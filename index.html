@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservation - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <section class="card shadow-sm p-4 mb-5">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Hotel</label>
+                    <input type="text" id="searchText" class="form-control" placeholder="Where are you going?" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Check-in/out</label>
+                    <input type="date" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Guests</label>
+                    <input type="text" class="form-control" placeholder="2 Guests, 1 Room" required>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button onclick="handleSearchClick()" class="btn btn-primary w-100 py-2">Search</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="dealsSection" class="mb-5">
+            <h3 class="mb-4">Deals and Discounts</h3>
+            <div id="dealsContainer" class="row row-cols-1 row-cols-md-4 g-4"></div>
+        </section>
+
+        <section class="mb-5">
+            <h3 class="mb-4">Popular Searches</h3>
+            <div id="popCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" id="popularContainer"></div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#popCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#popCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dCont = document.getElementById('dealsContainer');
+            deals.forEach(d => {
+                dCont.innerHTML += `
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="${d.image}" class="card-img-top">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${d.title}</h5>
+                                <p class="card-text small">${d.details}</p>
+                                <a href="#" class="text-primary text-decoration-none small">LEARN MORE →</a>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+
+            const pCont = document.getElementById('popularContainer');
+            popularSearches.forEach((p, i) => {
+                pCont.innerHTML += `
+                    <div class="carousel-item ${i === 0 ? 'active' : ''}">
+                        <div class="card bg-dark text-white border-0" onclick="handleSearchClick()">
+                            <img src="${p.image}" class="card-img opacity-50" style="height: 300px; object-fit: cover;">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end">
+                                <h4>${p.title}</h4>
+                                <p>${p.details}</p>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        });
+    </script>
+</body>
+</html>

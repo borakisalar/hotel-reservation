@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container py-4">
+    <div id="hotelInfo">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 id="hotelName"></h2>
+            <button onclick="showRooms()" class="btn btn-primary">Book now</button>
+        </div>
+        
+        <div id="photoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active"><img src="https://via.placeholder.com/1200x400" class="d-block w-100 rounded"></div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <h4>About the property</h4>
+                <p id="hotelDesc"></p>
+            </div>
+            <div class="col-md-4 border-start">
+                <h4>Hotel policies</h4>
+                <p>Check-in: After 14:00<br>Check-out: Before 12:00</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="roomSection" class="hidden">
+        <h3 class="mb-4">Room Selection</h3>
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Room Type</th>
+                    <th>Price</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Standard Room</td>
+                    <td>₺2,500</td>
+                    <td><button onclick="toPayment('Standard')" class="btn btn-outline-primary btn-sm">Select</button></td>
+                </tr>
+                <tr>
+                    <td>Deluxe Suite</td>
+                    <td>₺4,500</td>
+                    <td><button onclick="toPayment('Deluxe')" class="btn btn-outline-primary btn-sm">Select</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const hotel = JSON.parse(sessionStorage.getItem('selectedHotel'));
+        if(hotel) {
+            document.getElementById('hotelName').innerText = hotel.name;
+            document.getElementById('hotelDesc').innerText = hotel.details;
+        }
+
+        function showRooms() {
+            document.getElementById('roomSection').classList.remove('hidden');
+        }
+
+        function toPayment(type) {
+            hotel.roomType = type;
+            hotel.roomCount = 1;
+            sessionStorage.setItem('selectedHotel', JSON.stringify(hotel));
+            window.location.href = 'payment.html';
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="container py-4">
+    <div id="hotelInfo">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 id="hotelName"></h2>
+            <button onclick="showRooms()" class="btn btn-primary">Book now</button>
+        </div>
+        
+        <div id="photoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active"><img src="https://via.placeholder.com/1200x400" class="d-block w-100 rounded"></div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <h4>About the property</h4>
+                <p id="hotelDesc"></p>
+            </div>
+            <div class="col-md-4 border-start">
+                <h4>Hotel policies</h4>
+                <p>Check-in: After 14:00<br>Check-out: Before 12:00</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="roomSection" class="hidden">
+        <h3 class="mb-4">Room Selection</h3>
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Room Type</th>
+                    <th>Price</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Standard Room</td>
+                    <td>₺2,500</td>
+                    <td><button onclick="toPayment('Standard')" class="btn btn-outline-primary btn-sm">Select</button></td>
+                </tr>
+                <tr>
+                    <td>Deluxe Suite</td>
+                    <td>₺4,500</td>
+                    <td><button onclick="toPayment('Deluxe')" class="btn btn-outline-primary btn-sm">Select</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const hotel = JSON.parse(sessionStorage.getItem('selectedHotel'));
+        if(hotel) {
+            document.getElementById('hotelName').innerText = hotel.name;
+            document.getElementById('hotelDesc').innerText = hotel.details;
+        }
+
+        function showRooms() {
+            document.getElementById('roomSection').classList.remove('hidden');
+        }
+
+        function toPayment(type) {
+            hotel.roomType = type;
+            hotel.roomCount = 1;
+            sessionStorage.setItem('selectedHotel', JSON.stringify(hotel));
+            window.location.href = 'payment.html';
+        }
+    </script>
+</body>
+</html>
