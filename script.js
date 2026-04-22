@@ -1,14 +1,14 @@
 const hotels = [
     { id: 1, name: "Antalya Hotel", city: "Antalya", address: "123 Beach Road", details: "Luxury stay by the sea.", image: "https://via.placeholder.com/300x200", price: 5454 },
     { id: 2, name: "Mugla Resort", city: "Mugla", address: "45 Boat Lane", details: "Quiet nature retreat.", image: "https://via.placeholder.com/300x200", price: 7041 },
-    { id: 3, name: "Kappadokien Cave", city: "Kappadokien", address: "78 Stone Way", details: "Historical cave rooms.", image: "https://via.placeholder.com/300x200", price: 7402 },
-    { id: 4, name: "Kuzey Kıbrıs Inn", city: "Kıbrıs", address: "10 Harbor Dr", details: "Beautiful Mediterranean views.", image: "https://via.placeholder.com/300x200", price: 7613 }
+    { id: 3, name: "Kapadokya Cave", city: "Kapadokya", address: "78 Stone Way", details: "Historical cave rooms.", image: "https://via.placeholder.com/300x200", price: 7402 },
+    { id: 4, name: "Kuzey Kıbrıs Inn", city: "Kıbrıs", address: "10 Street", details: "Beautiful Mediterranean views.", image: "https://via.placeholder.com/300x200", price: 7613 }
 ];
 
 const deals = [
     { title: "Earn 3K Bonus Points", details: "For every 3 nights.", image: "https://via.placeholder.com/300x200" },
     { title: "Up to 50K Points", details: "Stay more, earn more.", image: "https://via.placeholder.com/300x200" },
-    { title: "Glamping 2K Bonus", details: "Outdoor luxury stays.", image: "https://via.placeholder.com/300x200" },
+    { title: "2K Bonus", details: "Outdoor luxury", image: "https://via.placeholder.com/300x200" },
     { title: "3K Points Per Night", details: "Register to earn now.", image: "https://via.placeholder.com/300x200" }
 ];
 
