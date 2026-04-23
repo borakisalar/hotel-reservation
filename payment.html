@@ -1,276 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete Your Booking — StayEasy</title>
-  <meta name="description" content="Enter your guest information and payment details to complete your hotel reservation on StayEasy." />
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CSC391 Project</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="searchResults.html">Search</a>
+            </div>
+        </div>
+    </nav>
 
-  <!-- =================== NAVBAR =================== -->
-  <nav class="site-nav">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="index.html" class="nav-brand"><i class="bi bi-buildings-fill me-1"></i>Stay<span>Easy</span></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="searchResults.html">Hotels</a>
-      </div>
-    </div>
-  </nav>
+    <div class="container mb-5">
+        <h2 class="mb-4">Complete Your Booking</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">Guest Information</h4>
+                        <form id="paymentForm" class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
 
-  <!-- =================== PAYMENT HERO =================== -->
-  <header class="payment-hero">
-    <div class="container">
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb" class="mb-2">
-        <ol class="breadcrumb" style="color:rgba(255,255,255,.6)">
-          <li class="breadcrumb-item"><a href="index.html" style="color:rgba(255,255,255,.7)">Home</a></li>
-          <li class="breadcrumb-item"><a href="searchResults.html" style="color:rgba(255,255,255,.7)">Hotels</a></li>
-          <li class="breadcrumb-item"><a href="hotelDetails.html" style="color:rgba(255,255,255,.7)">Details</a></li>
-          <li class="breadcrumb-item active" style="color:#fff">Payment</li>
-        </ol>
-      </nav>
-      <h1 style="font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:#fff">
-        <i class="bi bi-shield-check me-2" style="color:#10b981"></i>Complete Your Booking
-      </h1>
-      <p style="color:rgba(255,255,255,.7);margin-top:.4rem">Secure checkout — your data is protected</p>
-    </div>
-  </header>
+                            <h4 class="mt-4">Payment Information</h4>
+                            <div class="col-12 mt-2">
+                                <label class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="1234-5678-9012-3456" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Card Holder</label>
+                                <input type="text" class="form-control" id="cardHolder" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Expiry (MM/YY)</label>
+                                <input type="text" class="form-control" id="expiry" placeholder="05/28" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                            </div>
 
-  <!-- =================== MAIN =================== -->
-  <main>
-    <div class="container py-4">
-
-      <!-- No booking found state -->
-      <div class="empty-state d-none" id="no-booking-state">
-        <div class="empty-icon"><i class="bi bi-exclamation-circle"></i></div>
-        <h4>No Booking Found</h4>
-        <p>Please select a hotel and room before proceeding to payment.</p>
-        <a href="searchResults.html" class="btn btn-search mt-3" style="width:auto;padding:.7rem 2rem;">
-          <i class="bi bi-arrow-left me-2"></i>Back to Hotels
-        </a>
-      </div>
-
-      <!-- Payment form (shown when booking exists) -->
-      <div id="payment-content" class="d-none">
-        <div class="row g-4">
-
-          <!-- ─── LEFT: Forms ─── -->
-          <div class="col-12 col-lg-8">
-
-            <!-- Guest Information -->
-            <div class="form-card">
-              <h2 class="form-section-title">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                </svg>
-                Guest Information
-              </h2>
-              <div class="row g-3">
-                <div class="col-12 col-sm-6">
-                  <label class="form-label" for="guest-firstname">First Name *</label>
-                  <input type="text" class="form-control" id="guest-firstname" placeholder="John" autocomplete="given-name" />
-                  <div class="invalid-feedback" id="firstname-error">First name is required.</div>
+                            <div class="col-12 mt-4 text-end">
+                                <button type="submit" class="btn btn-success btn-lg">Complete the Booking</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-12 col-sm-6">
-                  <label class="form-label" for="guest-lastname">Last Name *</label>
-                  <input type="text" class="form-control" id="guest-lastname" placeholder="Doe" autocomplete="family-name" />
-                  <div class="invalid-feedback" id="lastname-error">Last name is required.</div>
-                </div>
-                <div class="col-12 col-sm-6">
-                  <label class="form-label" for="guest-email">Email Address *</label>
-                  <input type="email" class="form-control" id="guest-email" placeholder="john.doe@example.com" autocomplete="email" />
-                  <div class="invalid-feedback" id="email-error">Please enter a valid email address.</div>
-                </div>
-                <div class="col-12 col-sm-6">
-                  <label class="form-label" for="guest-phone">Phone Number *</label>
-                  <input type="tel" class="form-control" id="guest-phone" placeholder="+90 555 123 4567" autocomplete="tel" />
-                  <div class="invalid-feedback" id="phone-error">Please enter a valid phone number.</div>
-                </div>
-              </div>
             </div>
 
-            <!-- Payment Information -->
-            <div class="form-card">
-              <h2 class="form-section-title">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
-                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2m3 0h3a1 1 0 0 1 0 2H6a1 1 0 0 1 0-2"/>
-                </svg>
-                Payment Method
-              </h2>
-
-              <!-- Payment method tabs -->
-              <ul class="nav payment-method-tabs mb-4" id="paymentTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active" id="card-tab" data-bs-toggle="tab" href="#cardPanel" role="tab" aria-controls="cardPanel" aria-selected="true">
-                    <i class="bi bi-credit-card me-1"></i>Credit / Debit Card
-                  </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="bank-tab" data-bs-toggle="tab" href="#bankPanel" role="tab" aria-controls="bankPanel" aria-selected="false">
-                    <i class="bi bi-bank me-1"></i>Bank Transfer
-                  </a>
-                </li>
-              </ul>
-
-              <div class="tab-content" id="paymentTabContent">
-
-                <!-- Credit Card panel -->
-                <div class="tab-pane fade show active" id="cardPanel" role="tabpanel" aria-labelledby="card-tab">
-
-                  <!-- Visual card preview -->
-                  <div class="card-visual mb-3">
-                    <div style="display:flex;justify-content:space-between;align-items:center">
-                      <span style="font-size:.8rem;opacity:.7">StayEasy Card</span>
-                      <i class="bi bi-credit-card-2-front-fill" style="font-size:1.5rem"></i>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body bg-light">
+                        <h4 class="card-title">Booking Summary</h4>
+                        <hr>
+                        <p><strong>Hotel:</strong> <span id="summaryName"></span></p>
+                        <p><strong>Address:</strong> <span id="summaryAddress"></span></p>
+                        <p><strong>Room Type:</strong> <span id="summaryRoomType"></span></p>
+                        <p><strong>Dates:</strong> <span id="summaryDates"></span></p>
+                        <p><strong>Guests:</strong> <span id="summaryGuests"></span></p>
+                        <p><strong>Rooms:</strong> <span id="summaryRooms"></span></p>
+                        <hr>
+                        <h5 class="text-success text-end">Total: <span id="summaryTotal"></span></h5>
                     </div>
-                    <div class="card-number-display" id="card-preview-number">•••• •••• •••• ••••</div>
-                    <div class="card-meta">
-                      <div>
-                        <div style="font-size:.65rem;opacity:.7;margin-bottom:.15rem">CARD HOLDER</div>
-                        <div class="card-holder-display" id="card-preview-holder">YOUR NAME</div>
-                      </div>
-                      <div>
-                        <div style="font-size:.65rem;opacity:.7;margin-bottom:.15rem">EXPIRES</div>
-                        <div id="card-preview-expiry">MM/YY</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row g-3">
-                    <div class="col-12">
-                      <label class="form-label" for="card-number">Card Number *</label>
-                      <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" />
-                      <div class="invalid-feedback" id="cardnumber-error">Please enter a valid 16-digit card number.</div>
-                    </div>
-                    <div class="col-12">
-                      <label class="form-label" for="card-holder">Card Holder Name *</label>
-                      <input type="text" class="form-control" id="card-holder" placeholder="John Doe" autocomplete="cc-name" />
-                      <div class="invalid-feedback" id="cardholder-error">Card holder name is required.</div>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="card-expiry">Expiry Date *</label>
-                      <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" />
-                      <div class="invalid-feedback" id="expiry-error">Enter a valid expiry date (MM/YY).</div>
-                    </div>
-                    <div class="col-6">
-                      <label class="form-label" for="card-cvv">CVV *</label>
-                      <input type="text" class="form-control" id="card-cvv" placeholder="123" maxlength="4" autocomplete="cc-csc" />
-                      <div class="invalid-feedback" id="cvv-error">Enter a valid CVV (3–4 digits).</div>
-                    </div>
-                  </div>
                 </div>
-
-                <!-- Bank Transfer panel -->
-                <div class="tab-pane fade" id="bankPanel" role="tabpanel" aria-labelledby="bank-tab">
-                  <div class="alert alert-info" role="alert">
-                    <i class="bi bi-info-circle-fill me-2"></i>
-                    Please transfer to the account below. Your booking will be confirmed once we receive the payment.
-                  </div>
-                  <table class="table table-sm" id="bank-table">
-                    <tbody>
-                      <tr><td class="fw-semibold" style="width:40%">Bank Name</td><td>StayEasy Bank</td></tr>
-                      <tr><td class="fw-semibold">IBAN</td><td>TR12 0001 5001 5800 7306 8939 26</td></tr>
-                      <tr><td class="fw-semibold">SWIFT</td><td>STEASYTR</td></tr>
-                      <tr><td class="fw-semibold">Reference</td><td id="bank-reference">SE-000000</td></tr>
-                      <tr><td class="fw-semibold">Amount</td><td id="bank-amount">$0.00</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
-            </div><!-- /payment form card -->
-
-            <!-- Terms & complete -->
-            <div class="form-card">
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="terms-agree" />
-                <label class="form-check-label" for="terms-agree">
-                  I agree to the <a href="#" style="color:#1a6ef5">Terms &amp; Conditions</a> and <a href="#" style="color:#1a6ef5">Cancellation Policy</a>.
-                </label>
-                <div class="invalid-feedback" id="terms-error">You must agree to the terms to continue.</div>
-              </div>
-              <button class="btn btn-complete" id="complete-btn" type="button">
-                <i class="bi bi-shield-check me-2"></i>Complete the Booking
-              </button>
             </div>
-
-          </div><!-- /col-lg-8 -->
-
-          <!-- ─── RIGHT: Booking Summary ─── -->
-          <div class="col-12 col-lg-4">
-            <div class="booking-summary-card">
-              <h2 style="font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:1rem;border-bottom:2px solid #e8f0fe;padding-bottom:.6rem">
-                <i class="bi bi-receipt me-2" style="color:#1a6ef5"></i>Booking Summary
-              </h2>
-
-              <p class="summary-hotel-name" id="sum-hotel-name">—</p>
-              <p style="font-size:.82rem;color:#64748b;margin-bottom:.8rem" id="sum-hotel-address">—</p>
-
-              <div class="summary-line">
-                <span>Room Type</span>
-                <strong id="sum-room-type">—</strong>
-              </div>
-              <div class="summary-line">
-                <span>Rooms</span>
-                <strong id="sum-room-count">—</strong>
-              </div>
-              <div class="summary-line">
-                <span>Guests</span>
-                <strong id="sum-guests">—</strong>
-              </div>
-              <div class="summary-line">
-                <span>Check-In</span>
-                <strong id="sum-checkin">—</strong>
-              </div>
-              <div class="summary-line">
-                <span>Check-Out</span>
-                <strong id="sum-checkout">—</strong>
-              </div>
-              <div class="summary-line">
-                <span>Nights</span>
-                <strong id="sum-nights">—</strong>
-              </div>
-              <div class="summary-line">
-                <span>Rate</span>
-                <strong id="sum-rate">—</strong>
-              </div>
-
-              <div class="summary-total">
-                <span>Total</span>
-                <span id="sum-total">$0.00</span>
-              </div>
-
-              <!-- Trust badges -->
-              <div class="mt-3 pt-2 border-top d-flex flex-column gap-1">
-                <p style="font-size:.78rem;color:#64748b"><i class="bi bi-lock-fill me-1" style="color:#10b981"></i>256-bit SSL Encryption</p>
-                <p style="font-size:.78rem;color:#64748b"><i class="bi bi-arrow-counterclockwise me-1" style="color:#1a6ef5"></i>Free cancellation (check policy)</p>
-                <p style="font-size:.78rem;color:#64748b"><i class="bi bi-headset me-1" style="color:#f59e0b"></i>24/7 Customer Support</p>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /row -->
-      </div><!-- /#payment-content -->
-
-    </div><!-- /container -->
-  </main>
-
-  <!-- =================== FOOTER =================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-brand"><i class="bi bi-buildings-fill me-1"></i>Stay<span>Easy</span></div>
-      <p class="mt-2">&copy; 2026 StayEasy. All rights reserved.</p>
+        </div>
     </div>
-  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="data.js"></script>
-  <script src="payment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

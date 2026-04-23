@@ -1,167 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hotel Details — StayEasy</title>
-  <meta name="description" content="View hotel details, photos, room options, and book your stay with StayEasy." />
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-
-  <!-- =================== NAVBAR =================== -->
-  <nav class="site-nav">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="index.html" class="nav-brand"><i class="bi bi-buildings-fill me-1"></i>Stay<span>Easy</span></a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="searchResults.html">Hotels</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- =================== MAIN CONTENT =================== -->
-  <main class="detail-section">
-    <div class="container">
-
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb" class="mb-3">
-        <ol class="breadcrumb" id="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item"><a href="searchResults.html">Hotels</a></li>
-          <li class="breadcrumb-item active" id="breadcrumb-name">Hotel Details</li>
-        </ol>
-      </nav>
-
-      <!-- Not found state (shown if sessionStorage empty) -->
-      <div id="not-found-state" class="empty-state d-none">
-        <div class="empty-icon"><i class="bi bi-building-slash"></i></div>
-        <h4>Hotel Not Found</h4>
-        <p>Please go back and select a hotel from the search results.</p>
-        <a href="searchResults.html" class="btn btn-search mt-3" style="width:auto;padding:.7rem 2rem;">
-          <i class="bi bi-arrow-left me-2"></i>Back to Results
-        </a>
-      </div>
-
-      <!-- Main hotel content (hidden until JS loads hotel) -->
-      <div id="hotel-content" class="d-none">
-
-        <!-- ─── ROW 1: Photos Carousel + Info ─── -->
-        <div class="row g-4 mb-4">
-          <!-- Photo Carousel -->
-          <div class="col-12 col-lg-7">
-            <div id="detailCarousel" class="carousel slide detail-carousel" data-bs-ride="carousel">
-              <div class="carousel-indicators" id="detail-indicators"></div>
-              <div class="carousel-inner" id="detail-carousel-inner"></div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#detailCarousel" data-bs-slide="prev" id="detail-prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#detailCarousel" data-bs-slide="next" id="detail-next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CSC391 Project</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="searchResults.html">Search</a>
             </div>
-          </div>
+        </div>
+    </nav>
 
-          <!-- Hotel Info & Rules -->
-          <div class="col-12 col-lg-5 d-flex flex-column gap-3">
-            <!-- Hotel Info Card -->
-            <div class="hotel-info-card">
-              <h1 class="hotel-big-name" id="hotel-name">Loading…</h1>
-              <p class="hotel-address" id="hotel-address">
-                <i class="bi bi-geo-alt-fill text-primary"></i>
-              </p>
-              <div id="hotel-tags" class="mb-2"></div>
-              <div class="d-flex gap-2 flex-wrap mb-3" id="hotel-amenities"></div>
-              <p class="hotel-overview" id="hotel-overview"></p>
-            </div>
-
-            <!-- Hotel Rules Card -->
-            <div class="rules-card">
-              <h2 class="section-heading" style="font-size:1.1rem;margin-bottom:1rem">Hotel Rules</h2>
-              <div id="hotel-rules"></div>
-            </div>
-
-            <!-- Book Now button -->
-            <button class="btn btn-book-now" id="book-now-btn" type="button">
-              <i class="bi bi-calendar2-check me-2"></i>Book Now
+    <div class="container mb-5" id="hotelDetailsContainer">
+        <!-- Hotel Carousel -->
+        <div id="hotelCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner" id="hotelCarouselInner"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#hotelCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-dark rounded" aria-hidden="true"></span>
             </button>
-          </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#hotelCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-dark rounded" aria-hidden="true"></span>
+            </button>
         </div>
 
-        <!-- ─── ROW 2: Room Selection (initially hidden) ─── -->
-        <div id="room-selection">
-          <div class="room-selection-card fade-in" id="room-selection-inner">
-            <h2 class="section-heading mb-1">Select Your Room</h2>
-            <p class="section-sub mb-3">Choose room type and number of rooms, then proceed to payment.</p>
-            <div class="divider-line"></div>
+        <div class="row">
+            <div class="col-md-8">
+                <h2 id="hotelNameTitle"></h2>
+                <p id="hotelAddress" class="text-muted"></p>
+                <div class="mb-3">
+                    <span class="badge bg-primary" id="hotelStar"></span>
+                    <span class="badge bg-secondary" id="hotelRating"></span>
+                </div>
+                <p id="hotelDescription"></p>
 
-            <!-- Room cards generated by JS -->
-            <div id="room-cards-container" class="mb-4"></div>
-
-            <!-- Room count & dates summary -->
-            <div class="row g-3 mb-4">
-              <div class="col-6 col-md-3">
-                <label class="form-label" for="room-count-input">
-                  <i class="bi bi-door-open me-1"></i>Number of Rooms
-                </label>
-                <input type="number" class="form-control room-count-input" id="room-count-input" min="1" max="10" value="1" style="width:100%" />
-                <div class="invalid-feedback" id="room-count-error">Please select at least 1 room.</div>
-              </div>
-              <div class="col-6 col-md-3">
-                <label class="form-label"><i class="bi bi-people me-1"></i>Guests</label>
-                <p class="form-control-plaintext fw-semibold" id="summary-guests">—</p>
-              </div>
-              <div class="col-6 col-md-3">
-                <label class="form-label"><i class="bi bi-calendar-check me-1"></i>Check-In</label>
-                <p class="form-control-plaintext fw-semibold" id="summary-checkin">—</p>
-              </div>
-              <div class="col-6 col-md-3">
-                <label class="form-label"><i class="bi bi-calendar-x me-1"></i>Check-Out</label>
-                <p class="form-control-plaintext fw-semibold" id="summary-checkout">—</p>
-              </div>
+                <h4>Hotel Rules</h4>
+                <ul id="hotelRulesList"></ul>
             </div>
-
-            <!-- Price summary -->
-            <div class="alert alert-primary d-flex justify-content-between align-items-center" role="alert" id="price-summary-alert" style="border-radius:10px">
-              <span id="price-summary-text">Select a room type to see total price.</span>
-              <strong id="price-summary-total"></strong>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-success" id="hotelPrice"></h4>
+                        <button class="btn btn-primary btn-lg mt-3 w-100" id="bookNowBtn">Book Now</button>
+                    </div>
+                </div>
             </div>
-
-            <!-- Error for no room type selected -->
-            <div class="alert alert-danger d-none" id="room-error-alert" role="alert">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>Please select a room type before proceeding.
-            </div>
-
-            <div class="d-flex gap-3">
-              <button class="btn btn-proceed" id="proceed-btn" type="button">
-                <i class="bi bi-arrow-right-circle me-2"></i>Proceed to Payment
-              </button>
-              <button class="btn btn-outline-secondary" id="cancel-room-btn" type="button">
-                <i class="bi bi-x-circle me-1"></i>Cancel
-              </button>
-            </div>
-          </div>
         </div>
 
-      </div><!-- /#hotel-content -->
+        <!-- Room Selection (hidden by default) -->
+        <div id="roomSelectionSection">
+            <h4>Select a Room</h4>
+            <div class="row g-3" id="roomOptionsContainer"></div>
+            <div class="mt-4 text-end">
+                <div class="error-msg" id="roomError">Please select a room type.</div>
+                <button class="btn btn-success btn-lg" id="proceedPaymentBtn">Proceed to Payment</button>
+            </div>
+        </div>
     </div>
-  </main>
 
-  <!-- =================== FOOTER =================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-brand"><i class="bi bi-buildings-fill me-1"></i>Stay<span>Easy</span></div>
-      <p class="mt-2">&copy; 2026 StayEasy. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="data.js"></script>
-  <script src="hotelDetails.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
