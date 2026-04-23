@@ -14,13 +14,15 @@ body {
 
 .carousel-item img {
     border-radius: 10px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.hidden {
+    display: none !important;
 }
 
 #roomSection {
     border-top: 2px solid #dee2e6;
     padding-top: 20px;
-}
-
-.hidden {
-    display: none;
 }
