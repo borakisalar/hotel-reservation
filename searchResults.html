@@ -1,21 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Search Results</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body id="resultsPage" class="container py-4">
-    <div class="d-flex justify-content-between mb-4">
-        <h2>Search Results</h2>
-        <a href="index.html" class="btn btn-outline-secondary">Back to Search</a>
-    </div>
-    
-    <div id="resultsGrid" class="row row-cols-1 row-cols-md-4 g-4">
-    </div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results — StayEasy</title>
+  <meta name="description" content="Browse and compare available hotels. Filter by destination and find the perfect stay at the best price." />
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="app.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =================== NAVBAR =================== -->
+  <nav class="site-nav">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="nav-brand"><i class="bi bi-buildings-fill me-1"></i>Stay<span>Easy</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="searchResults.html">Hotels</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =================== RESULTS HEADER + SEARCH BAR =================== -->
+  <header class="results-header">
+    <div class="container">
+      <!-- Search Bar (same layout as index.html) -->
+      <div class="search-card mb-3">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-md-4">
+            <label class="form-label" for="search-destination">
+              <i class="bi bi-search me-1"></i>Destination
+            </label>
+            <input type="text" class="form-control" id="search-destination" placeholder="City, hotel name, or keyword…" autocomplete="off" />
+            <div class="invalid-feedback" id="dest-error">Please enter a destination.</div>
+          </div>
+          <div class="col-6 col-md-2">
+            <label class="form-label" for="search-checkin"><i class="bi bi-calendar-check me-1"></i>Check-In</label>
+            <input type="date" class="form-control" id="search-checkin" />
+            <div class="invalid-feedback" id="checkin-error">Required.</div>
+          </div>
+          <div class="col-6 col-md-2">
+            <label class="form-label" for="search-checkout"><i class="bi bi-calendar-x me-1"></i>Check-Out</label>
+            <input type="date" class="form-control" id="search-checkout" />
+            <div class="invalid-feedback" id="checkout-error">Required.</div>
+          </div>
+          <div class="col-6 col-md-2">
+            <label class="form-label" for="search-guests"><i class="bi bi-people me-1"></i>Guests</label>
+            <select class="form-select" id="search-guests">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="5">5+ Guests</option>
+            </select>
+          </div>
+          <div class="col-6 col-md-2">
+            <label class="form-label" for="search-rooms"><i class="bi bi-door-open me-1"></i>Rooms</label>
+            <select class="form-select" id="search-rooms">
+              <option value="1" selected>1 Room</option>
+              <option value="2">2 Rooms</option>
+              <option value="3">3 Rooms</option>
+              <option value="4">4 Rooms</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-search" id="search-btn" type="button">
+              <i class="bi bi-search me-2"></i>Search Hotels
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results count -->
+      <p class="results-count" id="results-count-text">Loading results…</p>
+    </div>
+  </header>
+
+  <!-- =================== RESULTS GRID =================== -->
+  <main>
+    <section class="section-pad">
+      <div class="container">
+        <div class="row g-4" id="hotels-grid">
+          <!-- Populated by searchResults.js -->
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state d-none" id="empty-state">
+          <div class="empty-icon"><i class="bi bi-building-slash"></i></div>
+          <h4>No Hotels Found</h4>
+          <p>Try searching for a different destination, city, or hotel name.</p>
+          <a href="index.html" class="btn btn-search mt-3" style="width:auto;padding:.7rem 2rem;">
+            <i class="bi bi-house me-2"></i>Back to Home
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== FOOTER =================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand"><i class="bi bi-buildings-fill me-1"></i>Stay<span>Easy</span></div>
+      <p class="mt-2">&copy; 2026 StayEasy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="data.js"></script>
+  <script src="searchResults.js"></script>
 </body>
 </html>
