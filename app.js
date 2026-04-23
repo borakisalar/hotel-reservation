@@ -9,6 +9,11 @@ const hotels = [
         price: 150,
         description: "A beautiful beachfront resort offering all-inclusive packages.",
         image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80"
+        ],
         rules: ["Check-in: 14:00", "Check-out: 12:00", "No smoking", "Pets allowed"],
         rooms: [
             { type: "Standard", price: 150, maxGuests: 2, features: "Sea view, 1 Double Bed" },
@@ -25,6 +30,11 @@ const hotels = [
         price: 100,
         description: "Right in the heart of Istanbul. Connect easily to everywhere.",
         image: "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80"
+        ],
         rules: ["Check-in: 13:00", "Check-out: 11:30", "No smoking", "No pets"],
         rooms: [
             { type: "Standard", price: 100, maxGuests: 2, features: "City view, 1 Double Bed" },
@@ -41,6 +51,11 @@ const hotels = [
         price: 80,
         description: "A cozy and affordable stay with views of the Aegean sea.",
         image: "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=600&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=600&q=80"
+        ],
         rules: ["Check-in: 14:00", "Check-out: 11:00", "Smoking allowed on balcony", "Pets allowed"],
         rooms: [
             { type: "Standard", price: 80, maxGuests: 2, features: "Street view, 2 Twin Beds" },
@@ -57,6 +72,11 @@ const hotels = [
         price: 400,
         description: "Exclusive private villas with personal pools.",
         image: "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=600&q=80",
+        images: [
+            "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80"
+        ],
         rules: ["Check-in: 15:00", "Check-out: 12:00", "No smoking indoors", "No pets"],
         rooms: [
             { type: "Villa 1", price: 400, maxGuests: 4, features: "Private Pool, 2 Bedrooms" },
@@ -72,7 +92,12 @@ const hotels = [
         rating: 9.1,
         price: 180,
         description: "Experience the unique cave rooms of Cappadocia.",
-        image: "https://images.unsplash.com/photo-1569949516362-f4c4b33d62a0?auto=format&fit=crop&w=600&q=80",
+        image: "https://cdn1.tablethotels.com/media/ecs/global/magazine/story-images/20200229/Museum2.jpg",
+        images: [
+            "https://cdn1.tablethotels.com/media/ecs/global/magazine/story-images/20200229/Museum2.jpg",
+            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80",
+            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+        ],
         rules: ["Check-in: 14:00", "Check-out: 11:00", "No smoking", "No pets"],
         rooms: [
             { type: "Cave Standard", price: 180, maxGuests: 2, features: "Cave experience, 1 Double Bed" },
@@ -87,10 +112,10 @@ const deals = [
     { title: "Honeymoon Package", details: "Free spa access for couples.", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" }
 ];
 const popular = [
-    { title: "Antalya", details: "Average $120/night", img: "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80" },
-    { title: "Bodrum", details: "Average $200/night", img: "https://idsb.tmgrup.com.tr/ly/uploads/images/2023/06/22/thumbs/800x531/279235.jpg" },
-    { title: "Istanbul", details: "Average $90/night", img: "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80" },
-    { title: "Cappadocia", details: "Average $140/night", img: "https://images6.alphacoders.com/127/1279674.jpg" }
+    { title: "Antalya", details: "Avg $120/night  •  45 Hotels  •  From $50 to $300", img: "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80" },
+    { title: "Bodrum", details: "Avg $200/night  •  30 Hotels  •  From $100 to $500", img: "https://idsb.tmgrup.com.tr/ly/uploads/images/2023/06/22/thumbs/800x531/279235.jpg" },
+    { title: "Istanbul", details: "Avg $90/night  •  120 Hotels  •  From $40 to $250", img: "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80" },
+    { title: "Cappadocia", details: "Avg $140/night  •  25 Hotels  •  From $80 to $400", img: "https://images6.alphacoders.com/127/1279674.jpg" }
 ];
 document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname;
@@ -167,7 +192,7 @@ window.triggerSearch = function (query) {
     let after = new Date(); after.setDate(after.getDate() + 2);
     document.getElementById("checkIn").value = tomorrow.toISOString().split("T")[0];
     document.getElementById("checkOut").value = after.toISOString().split("T")[0];
-    
+
     sessionStorage.setItem("searchQuery", query);
     sessionStorage.setItem("checkIn", document.getElementById("checkIn").value);
     sessionStorage.setItem("checkOut", document.getElementById("checkOut").value);
@@ -295,14 +320,16 @@ function initHotelDetails() {
         return;
     }
     const inner = document.getElementById("hotelCarouselInner");
-    inner.innerHTML = `
-        <div class="carousel-item active">
-            <img src="${hotel.image}" class="d-block w-100" alt="view 1">
-        </div>
-        <div class="carousel-item">
-            <img src="${hotel.image}" class="d-block w-100" alt="view 2" style="filter: brightness(0.8);">
-        </div>
-    `;
+    inner.innerHTML = "";
+    const imagesToUse = hotel.images || [hotel.image];
+    imagesToUse.forEach((imgSrc, idx) => {
+        const activeClass = idx === 0 ? "active" : "";
+        inner.innerHTML += `
+            <div class="carousel-item ${activeClass}">
+                <img src="${imgSrc}" class="d-block w-100" alt="view ${idx + 1}">
+            </div>
+        `;
+    });
     document.getElementById("hotelNameTitle").innerText = hotel.name;
     document.getElementById("hotelAddress").innerText = hotel.address;
     document.getElementById("hotelStar").innerText = `${hotel.star} Stars`;
@@ -317,6 +344,7 @@ function initHotelDetails() {
     });
     document.getElementById("bookNowBtn").addEventListener("click", () => {
         document.getElementById("roomSelectionSection").style.display = "block";
+        document.getElementById("detailsRoomCount").value = sessionStorage.getItem("roomCount") || "1";
         document.getElementById("hotelDetailsContainer").scrollIntoView({ behavior: "smooth", block: "end" });
     });
     const roomsContainer = document.getElementById("roomOptionsContainer");
@@ -346,7 +374,7 @@ function initHotelDetails() {
         }
         const roomIndex = selected.value;
         const selectedRoom = hotel.rooms[roomIndex];
-        const roomCount = parseInt(sessionStorage.getItem("roomCount") || "1");
+        const roomCount = parseInt(document.getElementById("detailsRoomCount").value || "1");
         const guestCount = parseInt(sessionStorage.getItem("guestCount") || "2");
         const checkIn = sessionStorage.getItem("checkIn") || "Not set";
         const checkOut = sessionStorage.getItem("checkOut") || "Not set";
@@ -359,37 +387,31 @@ function initHotelDetails() {
             }
         }
         const totalAmount = selectedRoom.price * roomCount * nights;
-        const reservation = {
-            hotel: {
-                name: hotel.name,
-                address: hotel.address
-            },
-            reservationData: {
-                roomCount: roomCount,
-                guestCount: guestCount,
-                roomType: selectedRoom.type,
-                checkInDate: checkIn,
-                checkOutDate: checkOut
-            },
-            amountInfo: {
-                totalAmount: totalAmount,
-                nights: nights
-            }
+        hotel.reservationData = {
+            roomCount: roomCount,
+            guestCount: guestCount,
+            roomType: selectedRoom.type,
+            checkInDate: checkIn,
+            checkOutDate: checkOut
         };
-        sessionStorage.setItem("draftReservation", JSON.stringify(reservation));
+        hotel.amountInfo = {
+            totalAmount: totalAmount,
+            nights: nights
+        };
+        sessionStorage.setItem("selectedHotel", JSON.stringify(hotel));
         window.location.href = "payment.html";
     });
 }
 function initPayment() {
-    const draftStr = sessionStorage.getItem("draftReservation");
+    const draftStr = sessionStorage.getItem("selectedHotel");
     if (!draftStr) {
         alert("No reservation data found");
         window.location.href = "index.html";
         return;
     }
     const draft = JSON.parse(draftStr);
-    document.getElementById("summaryName").innerText = draft.hotel.name;
-    document.getElementById("summaryAddress").innerText = draft.hotel.address;
+    document.getElementById("summaryName").innerText = draft.name;
+    document.getElementById("summaryAddress").innerText = draft.address;
     document.getElementById("summaryRoomType").innerText = draft.reservationData.roomType;
     document.getElementById("summaryDates").innerText = `${draft.reservationData.checkInDate} to ${draft.reservationData.checkOutDate}`;
     document.getElementById("summaryGuests").innerText = draft.reservationData.guestCount;
@@ -398,7 +420,7 @@ function initPayment() {
     document.getElementById("paymentForm").addEventListener("submit", (e) => {
         e.preventDefault();
         const finalReservation = {
-            hotel: draft.hotel,
+            hotel: { name: draft.name, address: draft.address },
             reservationData: draft.reservationData,
             guestData: {
                 firstName: document.getElementById("firstName").value,
