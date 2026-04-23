@@ -1,4 +1,3 @@
-// --- BEGIN DATA ---
 const hotels = [
     {
         id: 1,
@@ -81,48 +80,38 @@ const hotels = [
         ]
     }
 ];
-
 const deals = [
     { title: "Summer Sale 20%", details: "Save 20% on all Beach Resorts.", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" },
     { title: "City Break", details: "Book 3 nights, pay for 2 in Istanbul.", img: "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=400&q=80" },
     { title: "Early Bird", details: "15% off when booking 60 days ahead.", img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80" },
     { title: "Honeymoon Package", details: "Free spa access for couples.", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" }
 ];
-
 const popular = [
     { title: "Antalya", details: "Average $120/night", img: "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80" },
-    { title: "Bodrum", details: "Average $200/night", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" },
+    { title: "Bodrum", details: "Average $200/night", img: "https://idsb.tmgrup.com.tr/ly/uploads/images/2023/06/22/thumbs/800x531/279235.jpg" },
     { title: "Istanbul", details: "Average $90/night", img: "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80" },
-    { title: "Cappadocia", details: "Average $140/night", img: "https://images.unsplash.com/photo-1569949516362-f4c4b33d62a0?auto=format&fit=crop&w=600&q=80" }
+    { title: "Cappadocia", details: "Average $140/night", img: "https://images6.alphacoders.com/127/1279674.jpg" }
 ];
-// --- END DATA ---
-
 document.addEventListener("DOMContentLoaded", () => {
-    // Basic routing
     const path = window.location.pathname;
-    
-    // Check if we are on index
     if (path.endsWith("index.html") || path.endsWith("/") || !path.includes(".html")) {
         initIndex();
-    } 
+    }
     else if (path.endsWith("searchResults.html")) {
         initSearchResults();
-    } 
+    }
     else if (path.endsWith("hotelDetails.html")) {
         initHotelDetails();
-    } 
+    }
     else if (path.endsWith("payment.html")) {
         initPayment();
     }
 });
-
-// --- INDEX LOGIC ---
 function initIndex() {
     renderDeals();
     renderPopular();
     attachSearchForm("searchForm");
 }
-
 function renderDeals() {
     const container = document.getElementById("dealsContainer");
     deals.forEach(deal => {
@@ -134,26 +123,24 @@ function renderDeals() {
                 <div class="card-body">
                     <h5 class="card-title">${deal.title}</h5>
                     <p class="card-text">${deal.details}</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary mt-2">Learn More</a>
                 </div>
             </div>`;
         container.appendChild(col);
     });
 }
-
 function renderPopular() {
     const inner = document.getElementById("popularCarouselInner");
-    // Just put 2 items per slide for simplicity
     for (let i = 0; i < popular.length; i += 2) {
         let activeClass = i === 0 ? "active" : "";
         let item1 = popular[i];
-        let item2 = popular[i+1] || popular[i]; // fallback if odd
-        
+        let item2 = popular[i + 1] || popular[i];
         let slide = document.createElement("div");
         slide.className = `carousel-item ${activeClass}`;
         slide.innerHTML = `
             <div class="row">
                 <div class="col-6">
-                    <div class="card popular-card cursor-pointer pointer-event" onclick="triggerSearch('${item1.title}')">
+                    <div class="card popular-card cursor-pointer pointer-event" onclick="triggerSearch('${item1.title}')" style="cursor: pointer;">
                         <img src="${item1.img}" class="card-img-top" alt="${item1.title}">
                         <div class="card-body bg-dark text-white text-center">
                             <h5>${item1.title}</h5>
@@ -162,7 +149,7 @@ function renderPopular() {
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="card popular-card cursor-pointer pointer-event" onclick="triggerSearch('${item2.title}')">
+                    <div class="card popular-card cursor-pointer pointer-event" onclick="triggerSearch('${item2.title}')" style="cursor: pointer;">
                         <img src="${item2.img}" class="card-img-top" alt="${item2.title}">
                         <div class="card-body bg-dark text-white text-center">
                             <h5>${item2.title}</h5>
@@ -174,62 +161,45 @@ function renderPopular() {
         inner.appendChild(slide);
     }
 }
-
-// Global helper to search by clicking a popular search
-window.triggerSearch = function(query) {
+window.triggerSearch = function (query) {
     document.getElementById("searchQuery").value = query;
-    // Set some dummy future dates so validation passes
     let tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
     let after = new Date(); after.setDate(after.getDate() + 2);
     document.getElementById("checkIn").value = tomorrow.toISOString().split("T")[0];
     document.getElementById("checkOut").value = after.toISOString().split("T")[0];
     document.getElementById("searchForm").dispatchEvent(new Event("submit"));
 };
-
-
-// --- SEARCH FORM ATTACHMENT ---
 function attachSearchForm(formId) {
     const form = document.getElementById(formId);
-    if(!form) return;
-
-    // Load existing params if on search results
+    if (!form) return;
     const savedQuery = sessionStorage.getItem("searchQuery");
-    if(savedQuery && document.getElementById("searchQuery")) {
+    if (savedQuery && document.getElementById("searchQuery")) {
         document.getElementById("searchQuery").value = savedQuery;
         document.getElementById("checkIn").value = sessionStorage.getItem("checkIn");
         document.getElementById("checkOut").value = sessionStorage.getItem("checkOut");
         document.getElementById("guestCount").value = sessionStorage.getItem("guestCount");
         document.getElementById("roomCount").value = sessionStorage.getItem("roomCount");
     }
-
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         const query = document.getElementById("searchQuery").value.trim();
         const error = document.getElementById("queryError");
-        
         if (!query) {
             error.style.display = "block";
             return;
         }
         error.style.display = "none";
-
-        // Save parameters
         sessionStorage.setItem("searchQuery", query);
         sessionStorage.setItem("checkIn", document.getElementById("checkIn").value);
         sessionStorage.setItem("checkOut", document.getElementById("checkOut").value);
         sessionStorage.setItem("guestCount", document.getElementById("guestCount").value);
         sessionStorage.setItem("roomCount", document.getElementById("roomCount").value);
-
-        // Filter hotels
-        const filtered = hotels.filter(h => 
-            h.name.toLowerCase().includes(query.toLowerCase()) || 
+        const filtered = hotels.filter(h =>
+            h.name.toLowerCase().includes(query.toLowerCase()) ||
             h.city.toLowerCase().includes(query.toLowerCase()) ||
             h.description.toLowerCase().includes(query.toLowerCase())
         ).sort((a, b) => a.name.localeCompare(b.name));
-
         sessionStorage.setItem("searchResults", JSON.stringify(filtered));
-
-        // If we are on index, display inside the carousel. Otherwise redirect/reload
         if (window.location.pathname.endsWith("index.html") || window.location.pathname.endsWith("/") || !window.location.pathname.includes(".html")) {
             displayIndexResults(filtered);
         } else {
@@ -237,15 +207,11 @@ function attachSearchForm(formId) {
         }
     });
 }
-
 function displayIndexResults(results) {
     document.getElementById("dealsSection").style.display = "none";
     document.getElementById("indexSearchResultsSection").style.display = "block";
     const inner = document.getElementById("searchResultsCarouselInner");
     inner.innerHTML = "";
-
-    // 5 slides at a time per requirement: "Display 5 slides at a time"
-    // To keep it simple, we'll put up to 5 hotels in one slide
     for (let i = 0; i < results.length; i += 5) {
         let activeClass = i === 0 ? "active" : "";
         let slice = results.slice(i, i + 5);
@@ -263,35 +229,27 @@ function displayIndexResults(results) {
             </div>`;
         });
         rowHtml += `</div>`;
-        
         let slide = document.createElement("div");
         slide.className = `carousel-item ${activeClass}`;
         slide.innerHTML = rowHtml;
         inner.appendChild(slide);
     }
-
-    if(results.length === 0) {
+    if (results.length === 0) {
         inner.innerHTML = '<p>No results found.</p>';
     }
 }
-
-
-// --- SEARCH RESULTS PAGE LOGIC ---
 function initSearchResults() {
     attachSearchForm("searchForm");
-
     const results = JSON.parse(sessionStorage.getItem("searchResults") || "[]");
     const container = document.getElementById("searchResultsGrid");
     container.innerHTML = "";
-
     if (results.length === 0) {
         container.innerHTML = "<p>No hotels match your search.</p>";
         return;
     }
-
     results.forEach(h => {
         const col = document.createElement("div");
-        col.className = "col-md-3"; // 4 hotels per row
+        col.className = "col-md-3";
         col.innerHTML = `
             <div class="card hotel-card h-100" style="cursor:pointer;" onclick="selectHotel(${h.id})">
                 <img src="${h.image}" class="card-img-top" alt="${h.name}">
@@ -308,18 +266,13 @@ function initSearchResults() {
         container.appendChild(col);
     });
 }
-
-// Global helper to pick a hotel and go to details
-window.selectHotel = function(id) {
+window.selectHotel = function (id) {
     const hotel = hotels.find(h => h.id === id);
-    if(hotel) {
+    if (hotel) {
         sessionStorage.setItem("selectedHotel", JSON.stringify(hotel));
         window.location.href = "hotelDetails.html";
     }
 }
-
-
-// --- HOTEL DETAILS LOGIC ---
 function initHotelDetails() {
     const hotel = JSON.parse(sessionStorage.getItem("selectedHotel"));
     if (!hotel) {
@@ -327,8 +280,6 @@ function initHotelDetails() {
         window.location.href = "index.html";
         return;
     }
-
-    // Populate Carousel (Just using the same image twice for demo)
     const inner = document.getElementById("hotelCarouselInner");
     inner.innerHTML = `
         <div class="carousel-item active">
@@ -338,30 +289,22 @@ function initHotelDetails() {
             <img src="${hotel.image}" class="d-block w-100" alt="view 2" style="filter: brightness(0.8);">
         </div>
     `;
-
-    // Info
     document.getElementById("hotelNameTitle").innerText = hotel.name;
     document.getElementById("hotelAddress").innerText = hotel.address;
     document.getElementById("hotelStar").innerText = `${hotel.star} Stars`;
     document.getElementById("hotelRating").innerText = `Rating: ${hotel.rating}`;
     document.getElementById("hotelDescription").innerText = hotel.description;
     document.getElementById("hotelPrice").innerText = `From $${hotel.price} / night`;
-
-    // Rules
     const rulesList = document.getElementById("hotelRulesList");
     hotel.rules.forEach(rule => {
         let li = document.createElement("li");
         li.innerText = rule;
         rulesList.appendChild(li);
     });
-
-    // Book Now Action
     document.getElementById("bookNowBtn").addEventListener("click", () => {
         document.getElementById("roomSelectionSection").style.display = "block";
-        document.getElementById("hotelDetailsContainer").scrollIntoView({behavior: "smooth", block: "end"});
+        document.getElementById("hotelDetailsContainer").scrollIntoView({ behavior: "smooth", block: "end" });
     });
-
-    // Rooms
     const roomsContainer = document.getElementById("roomOptionsContainer");
     hotel.rooms.forEach((room, index) => {
         const col = document.createElement("div");
@@ -381,36 +324,27 @@ function initHotelDetails() {
         `;
         roomsContainer.appendChild(col);
     });
-
-    // Proceed to Payment Action
     document.getElementById("proceedPaymentBtn").addEventListener("click", () => {
         const selected = document.querySelector('input[name="roomSelect"]:checked');
         if (!selected) {
             document.getElementById("roomError").style.display = "block";
             return;
         }
-
         const roomIndex = selected.value;
         const selectedRoom = hotel.rooms[roomIndex];
-
         const roomCount = parseInt(sessionStorage.getItem("roomCount") || "1");
         const guestCount = parseInt(sessionStorage.getItem("guestCount") || "2");
         const checkIn = sessionStorage.getItem("checkIn") || "Not set";
         const checkOut = sessionStorage.getItem("checkOut") || "Not set";
-
-        // Calculate nights
         let nights = 1;
-        if(checkIn !== "Not set" && checkOut !== "Not set") {
+        if (checkIn !== "Not set" && checkOut !== "Not set") {
             const d1 = new Date(checkIn);
             const d2 = new Date(checkOut);
-            if(d2 > d1) {
+            if (d2 > d1) {
                 nights = (d2 - d1) / (1000 * 60 * 60 * 24);
             }
         }
-
         const totalAmount = selectedRoom.price * roomCount * nights;
-
-        // Build Reservation Object Structure specified in assignment
         const reservation = {
             hotel: {
                 name: hotel.name,
@@ -423,30 +357,23 @@ function initHotelDetails() {
                 checkInDate: checkIn,
                 checkOutDate: checkOut
             },
-            amountInfo: { // Stored for display only, before finalizing
+            amountInfo: {
                 totalAmount: totalAmount,
                 nights: nights
             }
         };
-
         sessionStorage.setItem("draftReservation", JSON.stringify(reservation));
         window.location.href = "payment.html";
     });
 }
-
-
-// --- PAYMENT PAGE LOGIC ---
 function initPayment() {
     const draftStr = sessionStorage.getItem("draftReservation");
-    if(!draftStr) {
+    if (!draftStr) {
         alert("No reservation data found");
         window.location.href = "index.html";
         return;
     }
-
     const draft = JSON.parse(draftStr);
-
-    // Populate Sidebar Summary
     document.getElementById("summaryName").innerText = draft.hotel.name;
     document.getElementById("summaryAddress").innerText = draft.hotel.address;
     document.getElementById("summaryRoomType").innerText = draft.reservationData.roomType;
@@ -454,12 +381,8 @@ function initPayment() {
     document.getElementById("summaryGuests").innerText = draft.reservationData.guestCount;
     document.getElementById("summaryRooms").innerText = draft.reservationData.roomCount;
     document.getElementById("summaryTotal").innerText = "$" + draft.amountInfo.totalAmount;
-
-    // Handle Form Submit
     document.getElementById("paymentForm").addEventListener("submit", (e) => {
         e.preventDefault();
-
-        // Build Final Object
         const finalReservation = {
             hotel: draft.hotel,
             reservationData: draft.reservationData,
@@ -480,14 +403,8 @@ function initPayment() {
                 totalAmount: draft.amountInfo.totalAmount
             }
         };
-
-        // Save to Session Storage
         sessionStorage.setItem("reservation", JSON.stringify(finalReservation));
-
-        // Clear Form fields
         document.getElementById("paymentForm").reset();
-
-        // Show Success Alert
         alert("Booking has been successfully completed! Thank you.");
     });
 }

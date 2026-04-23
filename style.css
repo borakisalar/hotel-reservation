@@ -3,20 +3,26 @@ body {
     padding-top: 20px;
     padding-bottom: 40px;
 }
-.hotel-card img, .deal-card img, .popular-card img {
+
+.hotel-card img,
+.deal-card img,
+.popular-card img {
     height: 200px;
     object-fit: cover;
 }
+
 #roomSelectionSection {
     display: none;
     margin-top: 20px;
     border-top: 1px solid #ccc;
     padding-top: 20px;
 }
+
 .carousel-inner img {
     height: 400px;
     object-fit: cover;
 }
+
 .error-msg {
     color: red;
     font-size: 0.9em;
