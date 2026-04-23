@@ -167,7 +167,21 @@ window.triggerSearch = function (query) {
     let after = new Date(); after.setDate(after.getDate() + 2);
     document.getElementById("checkIn").value = tomorrow.toISOString().split("T")[0];
     document.getElementById("checkOut").value = after.toISOString().split("T")[0];
-    document.getElementById("searchForm").dispatchEvent(new Event("submit"));
+    
+    sessionStorage.setItem("searchQuery", query);
+    sessionStorage.setItem("checkIn", document.getElementById("checkIn").value);
+    sessionStorage.setItem("checkOut", document.getElementById("checkOut").value);
+    sessionStorage.setItem("guestCount", "2");
+    sessionStorage.setItem("roomCount", "1");
+
+    const filtered = hotels.filter(h =>
+        h.name.toLowerCase().includes(query.toLowerCase()) ||
+        h.city.toLowerCase().includes(query.toLowerCase()) ||
+        h.description.toLowerCase().includes(query.toLowerCase())
+    ).sort((a, b) => a.name.localeCompare(b.name));
+
+    sessionStorage.setItem("searchResults", JSON.stringify(filtered));
+    window.location.href = "searchResults.html";
 };
 function attachSearchForm(formId) {
     const form = document.getElementById(formId);
