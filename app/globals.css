@@ -1,0 +1,25 @@
+body {
+  padding-bottom: 40px;
+}
+
+.hotel-card img,
+.deal-card img,
+.popular-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.carousel-inner img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.9em;
+  display: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

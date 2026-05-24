@@ -1,0 +1,122 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Antalya Beach Resort",
+      "address": "123 Beach Rd, Antalya, Turkey",
+      "city": "Antalya",
+      "star": 5,
+      "rating": 9.2,
+      "price": 150,
+      "description": "A beautiful beachfront resort offering all-inclusive packages.",
+      "image": "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80"
+      ],
+      "rules": ["Check-in: 14:00", "Check-out: 12:00", "No smoking", "Pets allowed"],
+      "rooms": [
+        { "type": "Standard", "price": 150, "maxGuests": 2, "features": "Sea view, 1 Double Bed" },
+        { "type": "Deluxe", "price": 250, "maxGuests": 3, "features": "Sea view, 1 King Bed, Balcony" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Istanbul City Hotel",
+      "address": "45 Taksim Sq, Istanbul, Turkey",
+      "city": "Istanbul",
+      "star": 4,
+      "rating": 8.5,
+      "price": 100,
+      "description": "Right in the heart of Istanbul. Connect easily to everywhere.",
+      "image": "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80"
+      ],
+      "rules": ["Check-in: 13:00", "Check-out: 11:30", "No smoking", "No pets"],
+      "rooms": [
+        { "type": "Standard", "price": 100, "maxGuests": 2, "features": "City view, 1 Double Bed" },
+        { "type": "Suite", "price": 200, "maxGuests": 4, "features": "City view, 1 King, 1 Sofa" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Izmir Seaside Inn",
+      "address": "99 Kordon, Izmir, Turkey",
+      "city": "Izmir",
+      "star": 3,
+      "rating": 7.9,
+      "price": 80,
+      "description": "A cozy and affordable stay with views of the Aegean sea.",
+      "image": "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1596436889106-be35e843f974?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=600&q=80"
+      ],
+      "rules": ["Check-in: 14:00", "Check-out: 11:00", "Smoking allowed on balcony", "Pets allowed"],
+      "rooms": [
+        { "type": "Standard", "price": 80, "maxGuests": 2, "features": "Street view, 2 Twin Beds" },
+        { "type": "Sea View", "price": 120, "maxGuests": 2, "features": "Sea view, 1 Double Bed" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Bodrum Luxury Villas",
+      "address": "77 Yalikavak, Bodrum, Turkey",
+      "city": "Bodrum",
+      "star": 5,
+      "rating": 9.6,
+      "price": 400,
+      "description": "Exclusive private villas with personal pools.",
+      "image": "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80"
+      ],
+      "rules": ["Check-in: 15:00", "Check-out: 12:00", "No smoking indoors", "No pets"],
+      "rooms": [
+        { "type": "Villa 1", "price": 400, "maxGuests": 4, "features": "Private Pool, 2 Bedrooms" },
+        { "type": "Villa 2", "price": 600, "maxGuests": 6, "features": "Private Pool, 3 Bedrooms" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Cappadocia Cave Hotel",
+      "address": "12 Goreme, Cappadocia, Turkey",
+      "city": "Cappadocia",
+      "star": 4,
+      "rating": 9.1,
+      "price": 180,
+      "description": "Experience the unique cave rooms of Cappadocia.",
+      "image": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80",
+      "images": [
+        "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
+      ],
+      "rules": ["Check-in: 14:00", "Check-out: 11:00", "No smoking", "No pets"],
+      "rooms": [
+        { "type": "Cave Standard", "price": 180, "maxGuests": 2, "features": "Cave experience, 1 Double Bed" },
+        { "type": "Cave Suite", "price": 300, "maxGuests": 4, "features": "Cave experience, Jacuzzi" }
+      ]
+    }
+  ],
+  "deals": [
+    { "id": 1, "title": "Summer Sale 20%", "details": "Save 20% on all Beach Resorts.", "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" },
+    { "id": 2, "title": "City Break", "details": "Book 3 nights, pay for 2 in Istanbul.", "img": "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=400&q=80" },
+    { "id": 3, "title": "Early Bird", "details": "15% off when booking 60 days ahead.", "img": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80" },
+    { "id": 4, "title": "Honeymoon Package", "details": "Free spa access for couples.", "img": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" }
+  ],
+  "popular": [
+    { "id": 1, "title": "Antalya", "details": "Avg $120/night  •  45 Hotels  •  From $50 to $300", "img": "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80" },
+    { "id": 2, "title": "Bodrum", "details": "Avg $200/night  •  30 Hotels  •  From $100 to $500", "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80" },
+    { "id": 3, "title": "Istanbul", "details": "Avg $90/night  •  120 Hotels  •  From $40 to $250", "img": "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80" },
+    { "id": 4, "title": "Cappadocia", "details": "Avg $140/night  •  25 Hotels  •  From $80 to $400", "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80" }
+  ],
+  "reservations": []
+}
