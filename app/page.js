@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import NavigationBar from "./components/NavigationBar";
 import SearchBar from "./components/SearchBar";
 import DealsAndDiscounts from "./components/DealsAndDiscounts";
 import PopularSearches from "./components/PopularSearches";
@@ -9,14 +8,10 @@ import SearchResultCarousel from "./components/SearchResultCarousel";
 import SearchResults from "./components/SearchResults";
 import HotelDetail from "./components/HotelDetail";
 import Payment from "./components/Payment";
-import ReservationsPage from "./reservations/ReservationsPage";
 
 const API_URL = "http://localhost:3001";
 
 export default function Home() {
-  // "home", "reservations"
-  const [currentPage, setCurrentPage] = useState("home");
-
   // Home page views: "initial", "searchCarousel", "searchResults", "hotelDetail", "payment"
   const [view, setView] = useState("initial");
 
@@ -95,80 +90,61 @@ export default function Home() {
     }
   };
 
-  const handleNavigate = (page) => {
-    setCurrentPage(page);
-    if (page === "home") {
-      setView("initial");
-      setSearchResults([]);
-      setSelectedHotel(null);
-      setBookingData(null);
-    }
-  };
-
   return (
-    <>
-      <NavigationBar currentPage={currentPage} onNavigate={handleNavigate} />
-      <div className="container">
-        {currentPage === "home" && (
-          <>
-            {/* Search Bar - always visible except in payment */}
-            {view !== "payment" && view !== "hotelDetail" && (
-              <SearchBar onSearch={handleSearch} />
-            )}
+    <div className="container">
+      {/* Search Bar - always visible except in payment */}
+      {view !== "payment" && view !== "hotelDetail" && (
+        <SearchBar onSearch={handleSearch} />
+      )}
 
-            {/* Initial view: Deals + Popular */}
-            {view === "initial" && (
-              <>
-                <DealsAndDiscounts deals={deals} />
-                <PopularSearches
-                  popular={popular}
-                  onPopularClick={handlePopularClick}
-                />
-              </>
-            )}
+      {/* Initial view: Deals + Popular */}
+      {view === "initial" && (
+        <>
+          <DealsAndDiscounts deals={deals} />
+          <PopularSearches
+            popular={popular}
+            onPopularClick={handlePopularClick}
+          />
+        </>
+      )}
 
-            {/* After search: Carousel + Popular */}
-            {view === "searchCarousel" && (
-              <>
-                <SearchResultCarousel
-                  results={searchResults}
-                  onHotelClick={handleHotelClick}
-                  onSeeMore={handleSeeMore}
-                />
-                <PopularSearches
-                  popular={popular}
-                  onPopularClick={handlePopularClick}
-                />
-              </>
-            )}
+      {/* After search: Carousel + Popular */}
+      {view === "searchCarousel" && (
+        <>
+          <SearchResultCarousel
+            results={searchResults}
+            onHotelClick={handleHotelClick}
+            onSeeMore={handleSeeMore}
+          />
+          <PopularSearches
+            popular={popular}
+            onPopularClick={handlePopularClick}
+          />
+        </>
+      )}
 
-            {/* See more: Grid */}
-            {view === "searchResults" && (
-              <SearchResults
-                results={searchResults}
-                onHotelClick={handleHotelClick}
-              />
-            )}
+      {/* See more: Grid */}
+      {view === "searchResults" && (
+        <SearchResults
+          results={searchResults}
+          onHotelClick={handleHotelClick}
+        />
+      )}
 
-            {/* Hotel Detail */}
-            {view === "hotelDetail" && selectedHotel && (
-              <HotelDetail
-                hotel={selectedHotel}
-                searchData={searchData}
-                onProceedPayment={handleProceedPayment}
-                onBack={handleBack}
-              />
-            )}
+      {/* Hotel Detail */}
+      {view === "hotelDetail" && selectedHotel && (
+        <HotelDetail
+          hotel={selectedHotel}
+          searchData={searchData}
+          onProceedPayment={handleProceedPayment}
+          onBack={handleBack}
+        />
+      )}
 
-            {/* Payment */}
-            {view === "payment" && bookingData && (
-              <Payment bookingData={bookingData} onBack={handleBack} />
-            )}
-          </>
-        )}
-
-        {currentPage === "reservations" && <ReservationsPage />}
-      </div>
-    </>
+      {/* Payment */}
+      {view === "payment" && bookingData && (
+        <Payment bookingData={bookingData} onBack={handleBack} />
+      )}
+    </div>
   );
 }

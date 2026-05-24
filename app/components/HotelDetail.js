@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Badge, Button } from "reactstrap";
+import { Badge, Button, Carousel, CarouselItem, CarouselControl } from "reactstrap";
 import RoomSelection from "./RoomSelection";
 
 export default function HotelDetail({ hotel, searchData, onProceedPayment, onBack }) {
@@ -61,46 +61,36 @@ export default function HotelDetail({ hotel, searchData, onProceedPayment, onBac
 
 function HotelCarousel({ images }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
   const next = () => {
+    if (animating) return;
     setActiveIndex(activeIndex === images.length - 1 ? 0 : activeIndex + 1);
   };
 
   const previous = () => {
+    if (animating) return;
     setActiveIndex(activeIndex === 0 ? images.length - 1 : activeIndex - 1);
   };
 
   return (
-    <div id="hotelCarousel" className="carousel slide">
-      <div className="carousel-inner">
-        {images.map((img, idx) => (
-          <div
-            key={idx}
-            className={`carousel-item ${idx === activeIndex ? "active" : ""}`}
-          >
-            <img
-              src={img}
-              className="d-block w-100"
-              alt={`view ${idx + 1}`}
-              style={{ height: "400px", objectFit: "cover" }}
-            />
-          </div>
-        ))}
-      </div>
-      <button
-        className="carousel-control-prev"
-        type="button"
-        onClick={previous}
-      >
-        <span className="carousel-control-prev-icon bg-dark rounded" aria-hidden="true"></span>
-      </button>
-      <button
-        className="carousel-control-next"
-        type="button"
-        onClick={next}
-      >
-        <span className="carousel-control-next-icon bg-dark rounded" aria-hidden="true"></span>
-      </button>
-    </div>
+    <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      {images.map((img, idx) => (
+        <CarouselItem
+          key={idx}
+          onExiting={() => setAnimating(true)}
+          onExited={() => setAnimating(false)}
+        >
+          <img
+            src={img}
+            className="d-block w-100"
+            alt={`view ${idx + 1}`}
+            style={{ height: "400px", objectFit: "cover" }}
+          />
+        </CarouselItem>
+      ))}
+      <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+      <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+    </Carousel>
   );
 }

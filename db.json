@@ -233,5 +233,66 @@
       "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80"
     }
   ],
-  "reservations": []
+  "reservations": [
+    {
+      "hotel": {
+        "name": "Antalya Beach Resort",
+        "address": "123 Beach Rd, Antalya, Turkey"
+      },
+      "reservationData": {
+        "roomCount": 1,
+        "guestCount": 2,
+        "roomType": "Standard",
+        "checkInDate": "",
+        "checkOutDate": ""
+      },
+      "guestData": {
+        "firstName": "asd",
+        "lastName": "asd",
+        "email": "asd@asd.com",
+        "phone": "5555555555"
+      },
+      "paymentInformation": {
+        "paymentMethod": "Credit Card",
+        "cardInfo": {
+          "cardNumber": "12345678909123456",
+          "cardHolder": "asd asd",
+          "expiryDate": "05/28",
+          "cvv": "123"
+        },
+        "totalAmount": 150
+      },
+      "id": 1
+    },
+    {
+      "hotel": {
+        "name": "Antalya Beach Resort",
+        "address": "123 Beach Rd, Antalya, Turkey"
+      },
+      "reservationData": {
+        "roomCount": 1,
+        "guestCount": 2,
+        "roomType": "Deluxe",
+        "checkInDate": "",
+        "checkOutDate": ""
+      },
+      "guestData": {
+        "firstName": "asd",
+        "lastName": "asd",
+        "email": "sad@asd.com",
+        "phone": "5555555555"
+      },
+      "paymentInformation": {
+        "paymentMethod": "Credit Card",
+        "cardInfo": {
+          "cardNumber": "1234567890123456",
+          "cardHolder": "asd das",
+          "expiryDate": "05/28",
+          "cvv": "123"
+        },
+        "totalAmount": 250
+      },
+      "id": 2
+    }
+  ]
 }

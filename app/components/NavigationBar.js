@@ -1,39 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import {
   Navbar,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
 } from "reactstrap";
+import { usePathname } from "next/navigation";
 
-export default function NavigationBar({ currentPage, onNavigate }) {
+export default function NavigationBar() {
+  const pathname = usePathname();
+
   return (
     <Navbar color="dark" dark expand="lg" className="mb-4">
       <div className="container">
-        <NavbarBrand href="#" onClick={(e) => { e.preventDefault(); onNavigate("home"); }}>
-          CSC391 Project
-        </NavbarBrand>
+        <Link href="/" passHref legacyBehavior>
+          <NavbarBrand>CSC391 Project</NavbarBrand>
+        </Link>
         <Nav navbar>
           <NavItem>
-            <NavLink
-              href="#"
-              active={currentPage === "home"}
-              onClick={(e) => { e.preventDefault(); onNavigate("home"); }}
-            >
+            <Link href="/" className={`nav-link ${pathname === "/" ? "active" : ""}`}>
               Home
-            </NavLink>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink
-              href="#"
-              active={currentPage === "reservations"}
-              onClick={(e) => { e.preventDefault(); onNavigate("reservations"); }}
-            >
+            <Link href="/reservations" className={`nav-link ${pathname === "/reservations" ? "active" : ""}`}>
               Reservations
-            </NavLink>
+            </Link>
           </NavItem>
         </Nav>
       </div>

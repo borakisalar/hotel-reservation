@@ -77,7 +77,7 @@ export default function ReservationsPage() {
                     size="sm"
                     onClick={() => handleDelete(r.id)}
                   >
-                    🗑️ Delete
+                    Delete
                   </Button>
                 </td>
               </tr>
