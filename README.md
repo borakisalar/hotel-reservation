@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel Reservation App (Project 2)
 
-## Getting Started
+This is a Next.js and React-based hotel reservation application. It uses `json-server` to mock a RESTful backend API.
 
-First, run the development server:
+## Requirements
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+To run this project on any machine (Windows, Mac, or Linux), you will need to install **Node.js**:
+1. Download Node.js from the official website: https://nodejs.org/
+2. Run the installer and keep the default settings. It will install `node` and `npm` (Node Package Manager).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Run
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **Extract the Project Folder:**
+   If you received this project as a ZIP file, extract it to a folder on your computer.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Open the Command Prompt or Terminal:**
+   - On Windows: Press `Windows + R`, type `cmd`, and press Enter.
+   - Navigate to the project directory using the `cd` command. For example:
+     ```bash
+     cd C:\path\to\hotel-reservation
+     ```
 
-## Learn More
+3. **Install Dependencies:**
+   Run the following command to download and install all required packages:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Start the Application:**
+   Run this command to start both the Next.js frontend and the `json-server` backend at the same time:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Open the Application:**
+   Once the server starts, open your web browser and go to:
+   http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- The application runs on **port 3000**, and the `json-server` backend runs on **port 3001**.
+- If you see an error saying the port is already in use, make sure you don't have another server running on those ports.
+- The project data is stored locally in the `db.json` file.

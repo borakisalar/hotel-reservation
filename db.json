@@ -15,10 +15,25 @@
         "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80"
       ],
-      "rules": ["Check-in: 14:00", "Check-out: 12:00", "No smoking", "Pets allowed"],
+      "rules": [
+        "Check-in: 14:00",
+        "Check-out: 12:00",
+        "No smoking",
+        "Pets allowed"
+      ],
       "rooms": [
-        { "type": "Standard", "price": 150, "maxGuests": 2, "features": "Sea view, 1 Double Bed" },
-        { "type": "Deluxe", "price": 250, "maxGuests": 3, "features": "Sea view, 1 King Bed, Balcony" }
+        {
+          "type": "Standard",
+          "price": 150,
+          "maxGuests": 2,
+          "features": "Sea view, 1 Double Bed"
+        },
+        {
+          "type": "Deluxe",
+          "price": 250,
+          "maxGuests": 3,
+          "features": "Sea view, 1 King Bed, Balcony"
+        }
       ]
     },
     {
@@ -36,10 +51,25 @@
         "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80"
       ],
-      "rules": ["Check-in: 13:00", "Check-out: 11:30", "No smoking", "No pets"],
+      "rules": [
+        "Check-in: 13:00",
+        "Check-out: 11:30",
+        "No smoking",
+        "No pets"
+      ],
       "rooms": [
-        { "type": "Standard", "price": 100, "maxGuests": 2, "features": "City view, 1 Double Bed" },
-        { "type": "Suite", "price": 200, "maxGuests": 4, "features": "City view, 1 King, 1 Sofa" }
+        {
+          "type": "Standard",
+          "price": 100,
+          "maxGuests": 2,
+          "features": "City view, 1 Double Bed"
+        },
+        {
+          "type": "Suite",
+          "price": 200,
+          "maxGuests": 4,
+          "features": "City view, 1 King, 1 Sofa"
+        }
       ]
     },
     {
@@ -57,10 +87,25 @@
         "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=600&q=80"
       ],
-      "rules": ["Check-in: 14:00", "Check-out: 11:00", "Smoking allowed on balcony", "Pets allowed"],
+      "rules": [
+        "Check-in: 14:00",
+        "Check-out: 11:00",
+        "Smoking allowed on balcony",
+        "Pets allowed"
+      ],
       "rooms": [
-        { "type": "Standard", "price": 80, "maxGuests": 2, "features": "Street view, 2 Twin Beds" },
-        { "type": "Sea View", "price": 120, "maxGuests": 2, "features": "Sea view, 1 Double Bed" }
+        {
+          "type": "Standard",
+          "price": 80,
+          "maxGuests": 2,
+          "features": "Street view, 2 Twin Beds"
+        },
+        {
+          "type": "Sea View",
+          "price": 120,
+          "maxGuests": 2,
+          "features": "Sea view, 1 Double Bed"
+        }
       ]
     },
     {
@@ -78,10 +123,25 @@
         "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80"
       ],
-      "rules": ["Check-in: 15:00", "Check-out: 12:00", "No smoking indoors", "No pets"],
+      "rules": [
+        "Check-in: 15:00",
+        "Check-out: 12:00",
+        "No smoking indoors",
+        "No pets"
+      ],
       "rooms": [
-        { "type": "Villa 1", "price": 400, "maxGuests": 4, "features": "Private Pool, 2 Bedrooms" },
-        { "type": "Villa 2", "price": 600, "maxGuests": 6, "features": "Private Pool, 3 Bedrooms" }
+        {
+          "type": "Villa 1",
+          "price": 400,
+          "maxGuests": 4,
+          "features": "Private Pool, 2 Bedrooms"
+        },
+        {
+          "type": "Villa 2",
+          "price": 600,
+          "maxGuests": 6,
+          "features": "Private Pool, 3 Bedrooms"
+        }
       ]
     },
     {
@@ -99,24 +159,79 @@
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
       ],
-      "rules": ["Check-in: 14:00", "Check-out: 11:00", "No smoking", "No pets"],
+      "rules": [
+        "Check-in: 14:00",
+        "Check-out: 11:00",
+        "No smoking",
+        "No pets"
+      ],
       "rooms": [
-        { "type": "Cave Standard", "price": 180, "maxGuests": 2, "features": "Cave experience, 1 Double Bed" },
-        { "type": "Cave Suite", "price": 300, "maxGuests": 4, "features": "Cave experience, Jacuzzi" }
+        {
+          "type": "Cave Standard",
+          "price": 180,
+          "maxGuests": 2,
+          "features": "Cave experience, 1 Double Bed"
+        },
+        {
+          "type": "Cave Suite",
+          "price": 300,
+          "maxGuests": 4,
+          "features": "Cave experience, Jacuzzi"
+        }
       ]
     }
   ],
   "deals": [
-    { "id": 1, "title": "Summer Sale 20%", "details": "Save 20% on all Beach Resorts.", "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" },
-    { "id": 2, "title": "City Break", "details": "Book 3 nights, pay for 2 in Istanbul.", "img": "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=400&q=80" },
-    { "id": 3, "title": "Early Bird", "details": "15% off when booking 60 days ahead.", "img": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80" },
-    { "id": 4, "title": "Honeymoon Package", "details": "Free spa access for couples.", "img": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" }
+    {
+      "id": 1,
+      "title": "Summer Sale 20%",
+      "details": "Save 20% on all Beach Resorts.",
+      "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": 2,
+      "title": "City Break",
+      "details": "Book 3 nights, pay for 2 in Istanbul.",
+      "img": "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Early Bird",
+      "details": "15% off when booking 60 days ahead.",
+      "img": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": 4,
+      "title": "Honeymoon Package",
+      "details": "Free spa access for couples.",
+      "img": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80"
+    }
   ],
   "popular": [
-    { "id": 1, "title": "Antalya", "details": "Avg $120/night  •  45 Hotels  •  From $50 to $300", "img": "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80" },
-    { "id": 2, "title": "Bodrum", "details": "Avg $200/night  •  30 Hotels  •  From $100 to $500", "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80" },
-    { "id": 3, "title": "Istanbul", "details": "Avg $90/night  •  120 Hotels  •  From $40 to $250", "img": "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80" },
-    { "id": 4, "title": "Cappadocia", "details": "Avg $140/night  •  25 Hotels  •  From $80 to $400", "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80" }
+    {
+      "id": 1,
+      "title": "Antalya",
+      "details": "Avg $120/night  •  45 Hotels  •  From $50 to $300",
+      "img": "https://images.unsplash.com/photo-1612965607446-25e1332775ae?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 2,
+      "title": "Bodrum",
+      "details": "Avg $200/night  •  30 Hotels  •  From $100 to $500",
+      "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Istanbul",
+      "details": "Avg $90/night  •  120 Hotels  •  From $40 to $250",
+      "img": "https://images.unsplash.com/photo-1541971875076-8f970d573be6?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "id": 4,
+      "title": "Cappadocia",
+      "details": "Avg $140/night  •  25 Hotels  •  From $80 to $400",
+      "img": "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?auto=format&fit=crop&w=600&q=80"
+    }
   ],
   "reservations": []
 }
