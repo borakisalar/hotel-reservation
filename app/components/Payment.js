@@ -33,7 +33,7 @@ export default function Payment({ bookingData, onBack }) {
     e.preventDefault();
 
     const reservation = {
-      hotel: { name: hotel.name, address: hotel.address },
+      hotel: { name: hotel.name, address: hotel.address, image: hotel.image },
       reservationData: reservationData,
       guestData: {
         firstName,
