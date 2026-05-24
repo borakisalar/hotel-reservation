@@ -21,7 +21,7 @@ export default function SearchResultCarousel({ results, onHotelClick, onSeeMore 
     return <p>No results found.</p>;
   }
 
-  // Group results in chunks of 5
+
   const slides = [];
   for (let i = 0; i < results.length; i += 5) {
     slides.push(results.slice(i, i + 5));

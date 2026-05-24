@@ -19,7 +19,7 @@ export default function PopularSearches({ popular, onPopularClick }) {
 
   if (!popular || popular.length === 0) return null;
 
-  // Group popular items in pairs
+
   const slides = [];
   for (let i = 0; i < popular.length; i += 2) {
     slides.push(popular.slice(i, i + 2));

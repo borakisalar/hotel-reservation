@@ -12,7 +12,7 @@ import Payment from "./components/Payment";
 const API_URL = "http://localhost:3001";
 
 export default function Home() {
-  // Home page views: "initial", "searchCarousel", "searchResults", "hotelDetail", "payment"
+
   const [view, setView] = useState("initial");
 
   const [deals, setDeals] = useState([]);
@@ -22,7 +22,7 @@ export default function Home() {
   const [bookingData, setBookingData] = useState(null);
   const [searchData, setSearchData] = useState(null);
 
-  // Fetch deals and popular on mount
+
   useEffect(() => {
     fetch(`${API_URL}/deals`)
       .then((res) => res.json())
@@ -92,12 +92,12 @@ export default function Home() {
 
   return (
     <div className="container">
-      {/* Search Bar - always visible except in payment */}
+
       {view !== "payment" && view !== "hotelDetail" && (
         <SearchBar onSearch={handleSearch} />
       )}
 
-      {/* Initial view: Deals + Popular */}
+
       {view === "initial" && (
         <>
           <DealsAndDiscounts deals={deals} />
@@ -108,7 +108,7 @@ export default function Home() {
         </>
       )}
 
-      {/* After search: Carousel + Popular */}
+
       {view === "searchCarousel" && (
         <>
           <SearchResultCarousel
@@ -123,7 +123,7 @@ export default function Home() {
         </>
       )}
 
-      {/* See more: Grid */}
+
       {view === "searchResults" && (
         <SearchResults
           results={searchResults}
@@ -131,7 +131,7 @@ export default function Home() {
         />
       )}
 
-      {/* Hotel Detail */}
+
       {view === "hotelDetail" && selectedHotel && (
         <HotelDetail
           hotel={selectedHotel}
@@ -141,7 +141,7 @@ export default function Home() {
         />
       )}
 
-      {/* Payment */}
+
       {view === "payment" && bookingData && (
         <Payment bookingData={bookingData} onBack={handleBack} />
       )}

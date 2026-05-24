@@ -61,7 +61,7 @@ export default function Payment({ bookingData, onBack }) {
       });
 
       if (res.ok) {
-        // Clear form
+
         setFirstName("");
         setLastName("");
         setEmail("");
