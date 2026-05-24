@@ -141,7 +141,7 @@ function renderDeals() {
     const container = document.getElementById("dealsContainer");
     deals.forEach(deal => {
         const col = document.createElement("div");
-        col.className = "col-md-3";
+        col.className = "col-sm-6 col-md-4 col-lg-3";
         col.innerHTML = `
             <div class="card deal-card h-100">
                 <img src="${deal.img}" class="card-img-top" alt="${deal.title}">
@@ -288,7 +288,7 @@ function initSearchResults() {
     }
     results.forEach(h => {
         const col = document.createElement("div");
-        col.className = "col-md-3";
+        col.className = "col-sm-6 col-md-4 col-lg-3";
         col.innerHTML = `
             <div class="card hotel-card h-100" style="cursor:pointer;" onclick="selectHotel(${h.id})">
                 <img src="${h.image}" class="card-img-top" alt="${h.name}">
@@ -441,6 +441,14 @@ function initPayment() {
         };
         sessionStorage.setItem("reservation", JSON.stringify(finalReservation));
         document.getElementById("paymentForm").reset();
+        // Clear booking summary section
+        document.getElementById("summaryName").innerText = "";
+        document.getElementById("summaryAddress").innerText = "";
+        document.getElementById("summaryRoomType").innerText = "";
+        document.getElementById("summaryDates").innerText = "";
+        document.getElementById("summaryGuests").innerText = "";
+        document.getElementById("summaryRooms").innerText = "";
+        document.getElementById("summaryTotal").innerText = "";
         alert("Booking has been successfully completed! Thank you.");
     });
 }
