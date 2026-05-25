@@ -9,15 +9,36 @@ export default function SearchBar({ onSearch }) {
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState(2);
   const [rooms, setRooms] = useState(1);
-  const [queryError, setQueryError] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const nextErrors = {};
+
     if (!query.trim()) {
-      setQueryError(true);
+      nextErrors.query = "Please enter a search text.";
+    }
+    if (!checkIn) {
+      nextErrors.checkIn = "Please select a check-in date.";
+    }
+    if (!checkOut) {
+      nextErrors.checkOut = "Please select a check-out date.";
+    }
+    if (checkIn && checkOut && new Date(checkOut) <= new Date(checkIn)) {
+      nextErrors.checkOut = "Check-out date must be after check-in date.";
+    }
+    if (!Number.isInteger(guests) || guests < 1) {
+      nextErrors.guests = "Guest count must be at least 1.";
+    }
+    if (!Number.isInteger(rooms) || rooms < 1) {
+      nextErrors.rooms = "Room count must be at least 1.";
+    }
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    setQueryError(false);
+
     onSearch({ query: query.trim(), checkIn, checkOut, guests, rooms });
   };
 
@@ -35,9 +56,9 @@ export default function SearchBar({ onSearch }) {
                 onChange={(e) => setQuery(e.target.value)}
                 required
               />
-              {queryError && (
+              {errors.query && (
                 <div style={{ color: "red", fontSize: "0.9em" }}>
-                  Please enter a search text.
+                  {errors.query}
                 </div>
               )}
             </Col>
@@ -49,6 +70,11 @@ export default function SearchBar({ onSearch }) {
                 onChange={(e) => setCheckIn(e.target.value)}
                 required
               />
+              {errors.checkIn && (
+                <div style={{ color: "red", fontSize: "0.9em" }}>
+                  {errors.checkIn}
+                </div>
+              )}
             </Col>
             <Col md={2}>
               <Label>Check-out</Label>
@@ -58,6 +84,11 @@ export default function SearchBar({ onSearch }) {
                 onChange={(e) => setCheckOut(e.target.value)}
                 required
               />
+              {errors.checkOut && (
+                <div style={{ color: "red", fontSize: "0.9em" }}>
+                  {errors.checkOut}
+                </div>
+              )}
             </Col>
             <Col md={2}>
               <Label>Guests</Label>
@@ -65,9 +96,14 @@ export default function SearchBar({ onSearch }) {
                 type="number"
                 min="1"
                 value={guests}
-                onChange={(e) => setGuests(parseInt(e.target.value))}
+                onChange={(e) => setGuests(Number.parseInt(e.target.value, 10))}
                 required
               />
+              {errors.guests && (
+                <div style={{ color: "red", fontSize: "0.9em" }}>
+                  {errors.guests}
+                </div>
+              )}
             </Col>
             <Col md={2}>
               <Label>Rooms</Label>
@@ -75,9 +111,14 @@ export default function SearchBar({ onSearch }) {
                 type="number"
                 min="1"
                 value={rooms}
-                onChange={(e) => setRooms(parseInt(e.target.value))}
+                onChange={(e) => setRooms(Number.parseInt(e.target.value, 10))}
                 required
               />
+              {errors.rooms && (
+                <div style={{ color: "red", fontSize: "0.9em" }}>
+                  {errors.rooms}
+                </div>
+              )}
             </Col>
             <Col md={1} className="d-flex align-items-end">
               <Button color="primary" type="submit" className="w-100">

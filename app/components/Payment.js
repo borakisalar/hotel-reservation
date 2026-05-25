@@ -26,11 +26,54 @@ export default function Payment({ bookingData, onBack }) {
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
   const [completed, setCompleted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { hotel, reservationData, amountInfo } = bookingData;
 
+  const validateForm = () => {
+    const nextErrors = {};
+    const cleanCardNumber = cardNumber.replace(/\D/g, "");
+    const cleanPhone = phone.replace(/\D/g, "");
+
+    if (!firstName.trim()) nextErrors.firstName = "First name is required.";
+    if (!lastName.trim()) nextErrors.lastName = "Last name is required.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+    if (cleanPhone.length < 10) {
+      nextErrors.phone = "Enter a valid phone number.";
+    }
+    if (cleanCardNumber.length !== 16) {
+      nextErrors.cardNumber = "Card number must contain 16 digits.";
+    }
+    if (!cardHolder.trim()) {
+      nextErrors.cardHolder = "Card holder is required.";
+    }
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+      nextErrors.expiry = "Use MM/YY format.";
+    } else {
+      const [month, year] = expiry.split("/").map(Number);
+      const expiryDate = new Date(2000 + year, month);
+      const now = new Date();
+      if (expiryDate <= new Date(now.getFullYear(), now.getMonth())) {
+        nextErrors.expiry = "Card expiry date must be in the future.";
+      }
+    }
+    if (!/^\d{3,4}$/.test(cvv)) {
+      nextErrors.cvv = "CVV must be 3 or 4 digits.";
+    }
+
+    return nextErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const nextErrors = validateForm();
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      return;
+    }
 
     const reservation = {
       hotel: { name: hotel.name, address: hotel.address, image: hotel.image },
@@ -44,7 +87,7 @@ export default function Payment({ bookingData, onBack }) {
       paymentInformation: {
         paymentMethod: "Credit Card",
         cardInfo: {
-          cardNumber,
+          cardNumber: cardNumber.replace(/\D/g, ""),
           cardHolder,
           expiryDate: expiry,
           cvv,
@@ -70,6 +113,7 @@ export default function Payment({ bookingData, onBack }) {
         setCardHolder("");
         setExpiry("");
         setCvv("");
+        setErrors({});
         setCompleted(true);
         alert("Booking has been successfully completed! Thank you.");
       }
@@ -101,6 +145,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="First Name"
                         required
                       />
+                      {errors.firstName && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.firstName}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md={6}>
@@ -113,6 +162,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="Last Name"
                         required
                       />
+                      {errors.lastName && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.lastName}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md={6}>
@@ -125,6 +179,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="Email"
                         required
                       />
+                      {errors.email && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.email}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md={6}>
@@ -145,6 +204,11 @@ export default function Payment({ bookingData, onBack }) {
                           required
                         />
                       </div>
+                      {errors.phone && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.phone}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                 </Row>
@@ -161,6 +225,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="1234-5678-9012-3456"
                         required
                       />
+                      {errors.cardNumber && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.cardNumber}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md={6}>
@@ -173,6 +242,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="John Doe"
                         required
                       />
+                      {errors.cardHolder && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.cardHolder}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md={3}>
@@ -185,6 +259,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="05/28"
                         required
                       />
+                      {errors.expiry && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.expiry}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col md={3}>
@@ -197,6 +276,11 @@ export default function Payment({ bookingData, onBack }) {
                         placeholder="123"
                         required
                       />
+                      {errors.cvv && (
+                        <div style={{ color: "red", fontSize: "0.9em" }}>
+                          {errors.cvv}
+                        </div>
+                      )}
                     </FormGroup>
                   </Col>
                   <Col xs={12} className="mt-4 text-end">

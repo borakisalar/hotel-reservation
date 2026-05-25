@@ -6,27 +6,40 @@ import { Card, CardBody, Row, Col, Input, Label, Button, FormGroup } from "react
 export default function RoomSelection({ hotel, searchData, onProceedPayment }) {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [roomCount, setRoomCount] = useState(searchData?.rooms || 1);
-  const [roomError, setRoomError] = useState(false);
+  const [checkIn, setCheckIn] = useState(searchData?.checkIn || "");
+  const [checkOut, setCheckOut] = useState(searchData?.checkOut || "");
+  const [errors, setErrors] = useState({});
 
   const handleProceed = () => {
+    const nextErrors = {};
+
     if (selectedRoom === null) {
-      setRoomError(true);
+      nextErrors.roomType = "Please select a room type.";
+    }
+    if (!Number.isInteger(roomCount) || roomCount < 1) {
+      nextErrors.roomCount = "Room count must be at least 1.";
+    }
+    if (!checkIn) {
+      nextErrors.checkIn = "Please select a check-in date.";
+    }
+    if (!checkOut) {
+      nextErrors.checkOut = "Please select a check-out date.";
+    }
+    if (checkIn && checkOut && new Date(checkOut) <= new Date(checkIn)) {
+      nextErrors.checkOut = "Check-out date must be after check-in date.";
+    }
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
       return;
     }
-    setRoomError(false);
+
     const room = hotel.rooms[selectedRoom];
-    const checkIn = searchData?.checkIn || "";
-    const checkOut = searchData?.checkOut || "";
     const guestCount = searchData?.guests || 2;
 
-    let nights = 1;
-    if (checkIn && checkOut) {
-      const d1 = new Date(checkIn);
-      const d2 = new Date(checkOut);
-      if (d2 > d1) {
-        nights = (d2 - d1) / (1000 * 60 * 60 * 24);
-      }
-    }
+    const d1 = new Date(checkIn);
+    const d2 = new Date(checkOut);
+    const nights = (d2 - d1) / (1000 * 60 * 60 * 24);
 
     const totalAmount = room.price * roomCount * nights;
 
@@ -52,13 +65,48 @@ export default function RoomSelection({ hotel, searchData, onProceedPayment }) {
       <Row className="g-3 mb-3">
         <Col md={4}>
           <FormGroup>
+            <Label>Check-in</Label>
+            <Input
+              type="date"
+              value={checkIn}
+              onChange={(e) => setCheckIn(e.target.value)}
+            />
+            {errors.checkIn && (
+              <div style={{ color: "red", fontSize: "0.9em" }}>
+                {errors.checkIn}
+              </div>
+            )}
+          </FormGroup>
+        </Col>
+        <Col md={4}>
+          <FormGroup>
+            <Label>Check-out</Label>
+            <Input
+              type="date"
+              value={checkOut}
+              onChange={(e) => setCheckOut(e.target.value)}
+            />
+            {errors.checkOut && (
+              <div style={{ color: "red", fontSize: "0.9em" }}>
+                {errors.checkOut}
+              </div>
+            )}
+          </FormGroup>
+        </Col>
+        <Col md={4}>
+          <FormGroup>
             <Label>Room Count</Label>
             <Input
               type="number"
               min="1"
               value={roomCount}
-              onChange={(e) => setRoomCount(parseInt(e.target.value))}
+              onChange={(e) => setRoomCount(Number.parseInt(e.target.value, 10))}
             />
+            {errors.roomCount && (
+              <div style={{ color: "red", fontSize: "0.9em" }}>
+                {errors.roomCount}
+              </div>
+            )}
           </FormGroup>
         </Col>
       </Row>
@@ -90,9 +138,9 @@ export default function RoomSelection({ hotel, searchData, onProceedPayment }) {
           </Col>
         ))}
       </Row>
-      {roomError && (
+      {errors.roomType && (
         <div style={{ color: "red", fontSize: "0.9em", marginTop: "10px" }}>
-          Please select a room type.
+          {errors.roomType}
         </div>
       )}
       <div className="mt-3">

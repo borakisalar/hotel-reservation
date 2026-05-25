@@ -1,13 +1,48 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Badge, Button, Carousel, CarouselItem, CarouselControl } from "reactstrap";
 import RoomSelection from "./RoomSelection";
 
-export default function HotelDetail({ hotel, searchData, onProceedPayment, onBack }) {
-  const [showRooms, setShowRooms] = useState(false);
+const API_URL = "http://localhost:3001";
 
-  if (!hotel) return null;
+export default function HotelDetail({ hotelId, searchData, onProceedPayment, onBack }) {
+  const [hotel, setHotel] = useState(null);
+  const [showRooms, setShowRooms] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchHotel = async () => {
+      try {
+        const res = await fetch(`${API_URL}/hotels/${hotelId}`);
+        if (!res.ok) {
+          throw new Error("Hotel could not be loaded.");
+        }
+        const data = await res.json();
+        setHotel(data);
+        setShowRooms(false);
+        setError("");
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchHotel();
+  }, [hotelId]);
+
+  if (error) {
+    return (
+      <div className="mb-5">
+        <Button color="secondary" size="sm" className="mb-3" onClick={onBack}>
+          &larr; Back
+        </Button>
+        <p className="text-danger">{error}</p>
+      </div>
+    );
+  }
+
+  if (!hotel) return <p>Loading hotel details...</p>;
 
   const imagesToUse = hotel.images || [hotel.image];
 
@@ -36,7 +71,7 @@ export default function HotelDetail({ hotel, searchData, onProceedPayment, onBac
           <hr />
           <h5>Hotel Rules</h5>
           <ul>
-            {hotel.rules.map((rule, i) => (
+            {(hotel.rules || []).map((rule, i) => (
               <li key={i}>{rule}</li>
             ))}
           </ul>
@@ -81,10 +116,13 @@ function HotelCarousel({ images }) {
           onExiting={() => setAnimating(true)}
           onExited={() => setAnimating(false)}
         >
-          <img
+          <Image
             src={img}
             className="d-block w-100"
             alt={`view ${idx + 1}`}
+            width={1200}
+            height={400}
+            unoptimized
             style={{ height: "400px", objectFit: "cover" }}
           />
         </CarouselItem>

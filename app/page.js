@@ -18,7 +18,7 @@ export default function Home() {
   const [deals, setDeals] = useState([]);
   const [popular, setPopular] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [selectedHotelId, setSelectedHotelId] = useState(null);
   const [bookingData, setBookingData] = useState(null);
   const [searchData, setSearchData] = useState(null);
 
@@ -42,7 +42,7 @@ export default function Home() {
       const hotels = await res.json();
       const sorted = hotels.sort((a, b) => a.name.localeCompare(b.name));
       setSearchResults(sorted);
-      setView("searchCarousel");
+      setView(view === "searchResults" ? "searchResults" : "searchCarousel");
     } catch (err) {
       console.error("Error searching hotels:", err);
     }
@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   const handleHotelClick = (hotel) => {
-    setSelectedHotel(hotel);
+    setSelectedHotelId(hotel.id);
     setView("hotelDetail");
   };
 
@@ -132,9 +132,9 @@ export default function Home() {
       )}
 
 
-      {view === "hotelDetail" && selectedHotel && (
+      {view === "hotelDetail" && selectedHotelId && (
         <HotelDetail
-          hotel={selectedHotel}
+          hotelId={selectedHotelId}
           searchData={searchData}
           onProceedPayment={handleProceedPayment}
           onBack={handleBack}

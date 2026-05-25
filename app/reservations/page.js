@@ -1,44 +1,40 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Row, Col, Card, CardBody, CardImg, CardTitle, CardSubtitle, CardText, Button } from "reactstrap";
+import { Row, Col, Card, CardBody, CardImg, CardTitle, CardSubtitle, Button } from "reactstrap";
 
 const API_URL = "http://localhost:3001";
 
 export default function ReservationsPage() {
   const [reservations, setReservations] = useState([]);
 
+  async function getReservations() {
+    const [resRes, hotelsRes] = await Promise.all([
+      fetch(`${API_URL}/reservations`),
+      fetch(`${API_URL}/hotels`)
+    ]);
+    const data = await resRes.json();
+    const hotels = await hotelsRes.json();
+
+    const hotelMap = {};
+    hotels.forEach((h) => {
+      hotelMap[h.name] = h.image;
+    });
+
+    return data.map((r) => ({
+      ...r,
+      hotel: {
+        ...r.hotel,
+        image: r.hotel?.image || hotelMap[r.hotel?.name]
+      }
+    }));
+  }
+
   useEffect(() => {
-    fetchReservations();
+    getReservations()
+      .then((data) => setReservations(data))
+      .catch((err) => console.error("Error fetching data:", err));
   }, []);
-
-  const fetchReservations = async () => {
-    try {
-      const [resRes, hotelsRes] = await Promise.all([
-        fetch(`${API_URL}/reservations`),
-        fetch(`${API_URL}/hotels`)
-      ]);
-      const data = await resRes.json();
-      const hotels = await hotelsRes.json();
-
-      const hotelMap = {};
-      hotels.forEach(h => {
-        hotelMap[h.name] = h.image;
-      });
-
-      const augmentedData = data.map(r => ({
-        ...r,
-        hotel: {
-          ...r.hotel,
-          image: r.hotel?.image || hotelMap[r.hotel?.name]
-        }
-      }));
-
-      setReservations(augmentedData);
-    } catch (err) {
-      console.error("Error fetching data:", err);
-    }
-  };
 
   const handleDelete = async (id) => {
     try {
@@ -46,7 +42,8 @@ export default function ReservationsPage() {
         method: "DELETE",
       });
       if (res.ok) {
-        fetchReservations();
+        const data = await getReservations();
+        setReservations(data);
       }
     } catch (err) {
       console.error("Error deleting reservation:", err);
