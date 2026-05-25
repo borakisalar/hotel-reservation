@@ -15,14 +15,12 @@ export default function NavigationBar() {
   return (
     <Navbar color="dark" dark expand="lg" className="mb-4">
       <div className="container">
-        <Link href="/" passHref legacyBehavior>
-          <NavbarBrand>CSC391 Project</NavbarBrand>
-        </Link>
+        <NavbarBrand href="/">CSC391 Project</NavbarBrand>
         <Nav navbar>
           <NavItem>
-            <Link href="/" className={`nav-link ${pathname === "/" ? "active" : ""}`}>
+            <a href="/" className={`nav-link ${pathname === "/" ? "active" : ""}`}>
               Home
-            </Link>
+            </a>
           </NavItem>
           <NavItem>
             <Link href="/reservations" className={`nav-link ${pathname === "/reservations" ? "active" : ""}`}>

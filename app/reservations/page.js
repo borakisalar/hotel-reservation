@@ -61,24 +61,24 @@ export default function ReservationsPage() {
             <Col sm={12} md={6} lg={4} key={r.id}>
               <Card className="h-100 shadow-sm">
                 {r.hotel?.image ? (
-                  <CardImg 
-                    top 
-                    src={r.hotel.image} 
-                    alt={r.hotel?.name} 
-                    style={{ height: "200px", objectFit: "cover" }} 
+                  <CardImg
+                    top
+                    src={r.hotel.image}
+                    alt={r.hotel?.name}
+                    style={{ height: "200px", objectFit: "cover" }}
                   />
                 ) : (
                   <div style={{ height: "200px", backgroundColor: "#e9ecef", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <span className="text-muted">No Image Available</span>
                   </div>
                 )}
-                
+
                 <CardBody className="d-flex flex-column">
                   <CardTitle tag="h5" className="mb-1">{r.hotel?.name}</CardTitle>
                   <CardSubtitle className="mb-3 text-muted">
                     Guest: {r.guestData?.firstName} {r.guestData?.lastName}
                   </CardSubtitle>
-                  
+
                   <div className="mb-4 flex-grow-1">
                     <Row className="mb-1">
                       <Col xs="5" className="text-muted fw-bold">Room Count</Col>
@@ -101,10 +101,10 @@ export default function ReservationsPage() {
                       <Col xs="7">: {r.reservationData?.checkOutDate}</Col>
                     </Row>
                   </div>
-                  
+
                   <div className="d-flex justify-content-end border-top pt-3 mt-auto">
-                    <Button 
-                      color="danger" 
+                    <Button
+                      color="danger"
                       onClick={() => handleDelete(r.id)}
                     >
                       Delete Reservation

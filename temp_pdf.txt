@@ -1,0 +1,474 @@
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+•
+•
+•
+
+This assessment must be prepared and finalized individually or a group.
+You are expected to develop a web application with ReactJS, NextJS, NodeJS and Bootstrap.
+When your project is completed, you must upload it to the LMS as an archive file. Don’t add
+node_modules directory in the archieve file.
+
+Contents
+1.
+
+Project Details ....................................................................................................................................... 2
+1.1.
+
+Home Page (page.js) ................................................................................................................ 3
+
+1.2.
+
+Reservations Page.................................................................................................................... 6
+
+2.
+
+Data Requirements................................................................................................................................ 6
+
+3.
+
+Restrictions ............................................................................................................................................ 6
+
+4.
+
+Screen Mockups .................................................................................................................................... 8
+
+5.
+
+4.1.
+
+Initial Home page..................................................................................................................... 8
+
+4.2.
+
+Home Page - First Search ....................................................................................................... 10
+
+4.3.
+
+Home Page - HotelDetails ...................................................................................................... 11
+
+4.4.
+
+Home Page - Payment ........................................................................................................... 13
+
+4.5.
+
+My Reservations Page ........................................................................................................... 14
+
+RUBRIC ................................................................................................................................................. 15
+
+1
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+1. Project Details
+Your second project will be very similar to your first project. One new page has been added, and the
+requirements have been revised to emphasize proper use of ReactJS components. Please read the
+instructions below carefully.
+The project will contain two main pages: the Home page and the Reservations page. Other components
+will be associated with either the Home page or the Reservations page. Some components will be used
+as nested components.
+You may change the location of the navigation bar (e.g., left sidebar or right sidebar).
+Use React functional components for almost everything: HomePage, NavigationBar, SearchBar, HotelList
+, HotelCard, DealsAndDiscountsCarousel, DealAndDiscountCard, PopularSearches, PupulerSearchCard,
+HotelDetail, Payment, ReservationsPage, SearchResultCarousel, SearchResults, etc.
+Based on the user’s selections, the Home page’s component tree may look like the examples below.
+These are just suggestions to help you visualize the component structure. You can design different
+components.
+
+Initial render of Home Page:
+•
+
+<Home Page>
+o <SearchBar>
+o <DealsAndDiscountsCarousel>
+▪ <DealAndDiscountCard>
+o <PopularSearches>
+▪ <PopularSearchCard>
+
+After searching
+•
+
+<Home Page>
+o <SearchBar>
+o <SearchResultCarousel>
+▪ <HotelCard>
+o <PopularSearches>
+▪ <PopularSearchCard>
+
+After searching for hotels, when the user clicks the “See More” link
+•
+
+<Home Page>
+o <SearchBar>
+o <SearchResults>
+▪ <HotelCard>
+
+2
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+When user clicks over a hotel
+•
+
+<Home Page>
+o <HotelDetail>
+
+When user clicks the “book now” button
+•
+
+<Home Page>
+o <HotelDetail>
+o <RoomSelection>
+
+When user wants to complete the reservation
+•
+
+<Home Page>
+o <PaymentInfo>
+
+Before starting development, please design your components on paper. Decide on your component
+tree, each component’s input parameters (props), state variables, and the ownership of the data.
+Place the navigation bar in layout.js; as a result, the navigation bar will be included in all your pages.
+
+1.1.Home Page (page.js)
+The Home page is the starting point of your application. This page must be responsive and must initially
+contain the following sections: Search Bar, DealsAndDiscounts, SearchResultsCarousel, and Popular
+Searches. See Figure 1 below for the screen design.
+The page details are defined below:
+1. Search Bar: This bar will be used for searching available hotels. It must contain four fields and all of
+them are required.
+a. Search text field
+b. Check-in and check-out date fields
+c. Guest and room count selection fields
+2. Deals and Discounts Section:
+a. Retrieve deals list from the RESTful service (GET request).
+b. Display at least four deals or discounts.
+c. Generate the content of this section dynamically by iterating over your array.
+d. The "Learn more" link does not need to redirect to another page.
+3. Popular Searches Section:
+a. Retrieve the popular searches list from the RESTful service (GET request).
+b. Use the Bootstrap carousel component and display at least four items. You may show one
+slide or multiple slides on the screen at a time.
+c. When a user clicks on a search item, display the SearchResults component with results for the
+selected search item. For example, if a user clicks on “Antalya,” the SearchResults component
+must show the hotels in Antalya. See Figure 3 below for the screen design.
+3
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+Home Page Usage Scenario:
+a. When a user clicks the Search button:
+i. Retrieve the related hotels from the RESTful service (GET request).
+1. First, try to use the Query Capabilities provided by json-server (using query params,
+operators or advanced querying methods). If those are not sufficient, you may also
+use JavaScript’s filter method. Use only the text entered in the search field. You cannot
+use dates, guest counts, or room data as search criteria, because your hotels array
+likely contains only hotel information, not reservation data.
+2. Your search function must check the user-entered search text in the hotel title,
+description, or information fields. Depending on your hotel data, you may also use
+other fields.
+ii. Remove the content of the Deals and Discounts section and display the search results in a
+Bootstrap Carousel component. Display five slides at a time and sort the hotels by hotel name
+in ascending order.
+iii. Each hotel card should contain an image and the hotel name. You may also display additional
+information about the hotel, such as location, city, star count, rating count, and average
+rating.
+iv. Display a “See more deals” link at the top of the carousel.
+v. See Figure 2 below for the screen design
+b. When a user clicks “See more deals” link, remove Popular Searches and SearchResultCarousel sections
+and display all found hotels. Requirements are:
+i. Hotels must be sorted by name in ascending order.
+ii. See Figure 3 below for the screen design.
+iii. The page must be responsive.
+iv. Display at least four hotels per row.
+v. When the user performs another search, do not display the initial Home page again; instead,
+rerender the component with the latest search results.
+b. When the user clicks on a hotel. Display the hotelDetails section. You can send the selected hotel ID
+to the HotelDetail component using props. In the component, you can retrieve the related hotel data
+from the RESTful service by sending a GET request. Requirements are:
+i.
+ii.
+iii.
+iv.
+
+The page must be responsive.
+See Figure 4 below for the screen design.
+Initially, the Room Selection section must be hidden.
+When the user clicks the Book Now button, display the Room Selection section. See Figure 5
+below for the screen design.
+v. You are free to modify the design of the Room Selection section.
+vi. When the user clicks the Book Now button in the Room Selection section, display the Payment
+section. In this case, the room count and room type must be selected. You can send
+reservation data to the Payment component using props.
+c. Payment Section
+i. Retrieve the selected hotel’s reservation data from props.
+ii. All form fields are required. Add any additional validation rules as needed. Validate the data
+before submitting the form and display error messages if there are any validation errors.
+4
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+iii. You may optionally add additional fields for other guests’ information, but this is not required.
+iv. When the user clicks the “Complete the Booking” button, create a reservation object and send
+object to the backend (send a POST request to your RESTful service).
+v. After the save completes successfully, clear all fields on the screen and show an alert box with
+a success message.
+vi. See Figure 6 below for the screen design
+vii. Your reservation object must contain:
+1. Hotel name and address
+2. Reservation data (room count, room type, dates)
+3. Guest data
+4. Payment information
+viii. A sample Reservation object structure is provided below:
+Reservation: {
+"hotel": {
+"name": "Antalya Hotel",
+"address": "123 Beach Road, Antalya"
+},
+"reservationData": {
+"roomCount": 2,
+"guestCount":4,
+"roomType": "Deluxe",
+"checkInDate": "2026-05-01",
+"checkOutDate": "2026-05-05"
+},
+"guestData": {
+"firstName": "John",
+"lastName": "Doe",
+"email": "john.doe@example.com",
+"phone": "+90 555 123 4567"
+},
+"paymentInformation": {
+"cardInfo": {
+"cardNumber": "1234-5678-9012-3456",
+"cardHolder": "John Doe",
+"expiryDate": "05/28",
+"cvv": "123"
+},
+"paymentMethod": "Credit Card",
+"totalAmount": 500
+}
+}
+
+5
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+1.2.Reservations Page
+When the user clicks the “Reservations” link in the navigation bar, display the “My Reservations” page.
+For retrieving reservations, send a GET request to your RESTful service and display the results.
+When the user clicks the delete icon, remove the corresponding reservation from the list (send a DELETE
+request to your RESTful service). You page must be rerendered.
+See Figure 7 below for the screen design.
+
+2. Data Requirements
+For data management, use RESTful services. Do not use any external addresses for your data. You will
+create your own backend and a JSON file for your data. In this file, define four arrays:
+1) Hotel list
+2) Deals and discounts list
+3) Popular searches list
+4) Reservations list.
+Include only the required fields in your JavaScript objects. Place your data file in the project and define a
+start script. You can use the same data you used in your first project. Keep the reservations list empty
+initially; you will add elements to this array when a reservation is completed.
+Install the npm-run-all package in your project. Define an npm script using npm-run-all to run
+multiple npm scripts at the same time (for starting the application and the RESTful services). For more
+detailed information, you can refer to the presentations I have already uploaded over the next two
+weeks and the following links:
+•
+•
+
+https://github.com/typicode/json-server
+https://github.com/mysticatea/npm-run-all
+
+3. Restrictions
+3.1. Groups/individuals will be subjected to interviews to demonstrate mastery of the subject.
+Attending the demo is compulsory. If you do not attend, you will receive a 0 for the project,
+and as a result, you will FAIL.
+3.2. Your application must be a ReactJS & NextJS application. Otherwise, you will FAIL.
+3.3. Use only allowed technologies (e.g., do not use jQuery, React Router, Redux, etc.). If you are
+not sure, please ask me; otherwise, you may lose points.
+3.4. For Bootstrap components, use ReactStrap or React-bootstrap packages.
+3.5. Do not use local or session storage. For all data management operations, use the
+corresponding RESTful services (e.g., get hotels, save reservation, get deals, filter hotels, etc.).
+For sorting and filtering, first try to use the RESTful service endpoints provided by json-server. If
+those are not sufficient, you may also use JavaScript’s sort and filter methods.
+6
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+3.6. Always use the appropriate HTTP methods with the endpoint URL: use POST to save data, GET
+to retrieve data, PUT to update data, and DELETE to remove data.
+3.7. Your application and RESTful services must start using a single script. Use the npm-run-all
+package to run scripts in parallel.
+3.8. Do not update the DOM tree directly without using ReactJS/component logic.
+3.9. Do not refer to images located in your local environment (e.g., C:\dev\images). You may use
+external image URLs or place images in your project (in this case, use relative URLs).
+3.10. Do not upload the node_modules directory to the LMS or GitHub.
+3.11. Before uploading your archive file to the LMS, unzip it in another directory, install
+dependencies, start, and test your application. If everything works correctly, you can upload
+your project.
+3.12. Use React functional components for almost everything: HomePage, NavigationBar, SearchBar,
+HotelList , HotelCard, DealsAndDiscountsCarousel, DealAndDiscountCard, PopularSearches,
+PupulerSearchCard, HotelDetail, Payment, ReservationsPage, SearchResultCarousel,
+SearchResults, etc.
+3.13. Do not use class components; otherwise, you will lose points.
+3.14. Use useState and useEffect hooks at least once.
+3.15. Use Fetch or Axios to make HTTP requests to RESTful services.
+
+7
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+4. Screen Mockups
+These mockup screens are provided for reference only. You may change the design as long as the
+required functions and specifications are met
+
+4.1.Initial Home page
+
+8
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+Figure 1: Home page: When user opens the home page first time
+
+Figure 2: Home page: After search
+
+9
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+4.2.Home Page - First Search
+
+Figure 3: SearchResults Page
+
+10
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+4.3.Home Page - HotelDetails
+
+Figure 4: When user opens the HotelDetails Page first time
+
+11
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+Figure 5: HotelDetails Page when user clicks “Book now” button
+
+12
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+4.4.Home Page - Payment
+
+Figure 6: Payment Page
+
+13
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+4.5.My Reservations Page
+
+Figure 7: My Reservations Page
+
+14
+
+CS391 Web Application Development
+Project (2)
+Assignment Date : 29.04.2026 09.00 AM
+Deadline
+: 27.05.2026 11.59 PM (EXTENSION IS NOT POSSIBLE)
+
+5. RUBRIC
+TOTAL
+
+100
+
+using npm-run-all
+design of json-server data file
+Navigation bar
+Home Page
+
+5
+5
+8
+
+Search Bar ve search functionality
+Deals and Discounts
+Popular Searches
+Search Results Carousel
+Search Results List
+Hotel Details
+Hotel Details with Room Selection section
+Payment
+My Reservations
+Listing reservations
+Deleting a reservation
+
+10
+
+15
+
+7
+8
+9
+10
+8
+10
+10
+5
+5
+
+
