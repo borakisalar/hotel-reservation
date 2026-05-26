@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+
 import { Badge, Button, Carousel, CarouselItem, CarouselControl } from "reactstrap";
 import RoomSelection from "./RoomSelection";
 
@@ -116,13 +116,10 @@ function HotelCarousel({ images }) {
           onExiting={() => setAnimating(true)}
           onExited={() => setAnimating(false)}
         >
-          <Image
+          <img
             src={img}
             className="d-block w-100"
             alt={`view ${idx + 1}`}
-            width={1200}
-            height={400}
-            unoptimized
             style={{ height: "400px", objectFit: "cover" }}
           />
         </CarouselItem>

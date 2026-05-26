@@ -6,12 +6,10 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  Card,
-  CardImg,
-  CardBody,
   Row,
   Col,
 } from "reactstrap";
+import PopularSearchCard from "./PopularSearchCard";
 
 export default function PopularSearches({ popular, onPopularClick }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -48,17 +46,7 @@ export default function PopularSearches({ popular, onPopularClick }) {
             <Row>
               {pair.map((item) => (
                 <Col xs={6} key={item.id}>
-                  <Card
-                    className="popular-card cursor-pointer"
-                    onClick={() => onPopularClick(item.title)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <CardImg top src={item.img} alt={item.title} />
-                    <CardBody className="bg-dark text-white text-center">
-                      <h5>{item.title}</h5>
-                      <p>{item.details}</p>
-                    </CardBody>
-                  </Card>
+                  <PopularSearchCard item={item} onClick={onPopularClick} />
                 </Col>
               ))}
             </Row>

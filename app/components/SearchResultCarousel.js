@@ -6,12 +6,10 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  Card,
-  CardImg,
-  CardBody,
   Row,
   Col,
 } from "reactstrap";
+import HotelCard from "./HotelCard";
 
 export default function SearchResultCarousel({ results, onHotelClick, onSeeMore }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,17 +53,7 @@ export default function SearchResultCarousel({ results, onHotelClick, onSeeMore 
             <Row>
               {group.map((hotel) => (
                 <Col key={hotel.id}>
-                  <Card
-                    className="hotel-card h-100"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => onHotelClick(hotel)}
-                  >
-                    <CardImg top src={hotel.image} alt={hotel.name} />
-                    <CardBody>
-                      <h6>{hotel.name}</h6>
-                      <p className="small m-0 text-muted">{hotel.city}</p>
-                    </CardBody>
-                  </Card>
+                  <HotelCard hotel={hotel} onClick={onHotelClick} />
                 </Col>
               ))}
             </Row>
